@@ -88,6 +88,16 @@ namespace OutlawHessDB
 
         private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
+            using (SQLiteCommand cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"UPDATE users Set isloggedin = @isloggedin Where userId = @userID";
+                cmd.Parameters.AddWithValue("isloggedin", "no");
+                cmd.Parameters.AddWithValue("userID", userID);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
             Application.Exit();
         }
     }
