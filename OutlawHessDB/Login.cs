@@ -83,7 +83,7 @@ namespace OutlawHessDB
                                 using (SQLiteCommand cmd = conn.CreateCommand())
                                 {
                                     cmd.CommandText = @"UPDATE users Set isloggedin = @isloggedin Where userId = @userID";
-                                    cmd.Parameters.AddWithValue("isloggedin", "Yes");
+                                    cmd.Parameters.AddWithValue("isloggedin", "yes");
                                     cmd.Parameters.AddWithValue("userID", txtEmployeeNumber.Text);
 
                                     conn.Open();
@@ -125,6 +125,11 @@ namespace OutlawHessDB
             Form NewForm = new PasswordHelp();
             NewForm.Show();
             this.Hide();
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

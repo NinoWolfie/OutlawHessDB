@@ -100,6 +100,23 @@ namespace OutlawHessDB
             }
             Application.Exit();
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            using (SQLiteCommand cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"UPDATE users Set isloggedin = @isloggedin Where userId = @userID";
+                cmd.Parameters.AddWithValue("isloggedin", "no");
+                cmd.Parameters.AddWithValue("userID", userID);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            Form form = new Login();
+            form.Show();
+            this.Dispose();
+        }
     }
 }
 
