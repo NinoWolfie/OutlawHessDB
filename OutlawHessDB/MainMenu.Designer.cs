@@ -98,6 +98,7 @@
             this.btnProducts.TabIndex = 4;
             this.btnProducts.Text = "Select";
             this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
             // label4
             // 

@@ -43,7 +43,7 @@ namespace OutlawHessDB
                 MessageBox.Show(ex);
             }
 
-            loginDetails();
+            loginDetailsMainMenu();
 
             foreach(DataRow row in dtLogin.Rows)
             {
@@ -63,7 +63,7 @@ namespace OutlawHessDB
             }            
         }
 
-        private void loginDetails()
+        private void loginDetailsMainMenu()
         {
             try
             {
@@ -116,6 +116,12 @@ namespace OutlawHessDB
             Form form = new Login();
             form.Show();
             this.Dispose();
+        }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            Form NewForm = new Products();
+            NewForm.Show();
         }
     }
 }
