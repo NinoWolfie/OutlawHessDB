@@ -76,6 +76,7 @@ namespace OutlawHessDB
                     {
                         rbtnOpen.Checked = true;
                     }
+                    txtInterestRate.Text = row["intrate"].ToString();
                 }
             }
         }
@@ -84,8 +85,61 @@ namespace OutlawHessDB
         {
             foreach (DataRow row in dtProduct.Rows)
             {
-                
+                if (lbxProducts.SelectedItem.ToString() == row["prodid"].ToString() + ": " + row["isaname"].ToString())
+                {
+                    if (row["status"].ToString() == "closed")
+                    {
+                        if (rbtnOpen.Checked == true)
+                        {
+                            using (SQLiteCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = @"UPDATE product Set status = @status Where prodid = @prodid";
+                                cmd.Parameters.AddWithValue("status", "open");
+                                cmd.Parameters.AddWithValue("prodid", row["prodid"].ToString());
+
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(row["status"].ToString() == "open")
+                        {
+                            if(rbtnClosed.Checked == true)
+                            {
+                                using (SQLiteCommand cmd = conn.CreateCommand())
+                                {
+                                    cmd.CommandText = @"UPDATE product Set status = @status Where prodid = @prodid";
+                                    cmd.Parameters.AddWithValue("status", "closed");
+                                    cmd.Parameters.AddWithValue("prodid", row["prodid"].ToString());
+
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                    conn.Close();
+                                }
+                            }
+                        }
+                    }
+                }
+                using (SQLiteCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE product Set intrate = @intrate Where prodid = @prodid";
+                    cmd.Parameters.AddWithValue("intrate", txtInterestRate.Text);
+                    cmd.Parameters.AddWithValue("prodid", row["prodid"].ToString());
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                this.Dispose();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

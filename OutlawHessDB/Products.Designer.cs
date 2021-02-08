@@ -35,6 +35,8 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
+            this.txtInterestRate = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxProducts
@@ -79,7 +81,7 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(33, 238);
+            this.btnSubmit.Location = new System.Drawing.Point(33, 290);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 4;
@@ -89,12 +91,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(178, 238);
+            this.button1.Location = new System.Drawing.Point(178, 290);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tssImageConnStatus
             // 
@@ -102,18 +105,36 @@
             this.tssImageConnStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tssImageConnStatus.Dock = System.Windows.Forms.DockStyle.None;
             this.tssImageConnStatus.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tssImageConnStatus.Location = new System.Drawing.Point(236, 266);
+            this.tssImageConnStatus.Location = new System.Drawing.Point(236, 316);
             this.tssImageConnStatus.Name = "tssImageConnStatus";
             this.tssImageConnStatus.Size = new System.Drawing.Size(39, 36);
             this.tssImageConnStatus.Stretch = true;
             this.tssImageConnStatus.TabIndex = 13;
             this.tssImageConnStatus.Text = "toolStrip1";
             // 
+            // txtInterestRate
+            // 
+            this.txtInterestRate.Location = new System.Drawing.Point(33, 241);
+            this.txtInterestRate.Name = "txtInterestRate";
+            this.txtInterestRate.Size = new System.Drawing.Size(107, 20);
+            this.txtInterestRate.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(146, 244);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Interest rate";
+            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 311);
+            this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtInterestRate);
             this.Controls.Add(this.tssImageConnStatus);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSubmit);
@@ -138,5 +159,7 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
+        private System.Windows.Forms.TextBox txtInterestRate;
+        private System.Windows.Forms.Label label2;
     }
 }
