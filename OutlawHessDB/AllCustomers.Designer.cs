@@ -34,6 +34,7 @@
             this.btnDeleteCustomer = new System.Windows.Forms.Button();
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
             this.btnMainMenu = new System.Windows.Forms.Button();
+            this.btnCustAccounts = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,7 +91,7 @@
             // 
             // btnMainMenu
             // 
-            this.btnMainMenu.Location = new System.Drawing.Point(1063, 145);
+            this.btnMainMenu.Location = new System.Drawing.Point(1063, 189);
             this.btnMainMenu.Name = "btnMainMenu";
             this.btnMainMenu.Size = new System.Drawing.Size(82, 38);
             this.btnMainMenu.TabIndex = 5;
@@ -98,11 +99,21 @@
             this.btnMainMenu.UseVisualStyleBackColor = true;
             this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
             // 
+            // btnCustAccounts
+            // 
+            this.btnCustAccounts.Location = new System.Drawing.Point(1063, 145);
+            this.btnCustAccounts.Name = "btnCustAccounts";
+            this.btnCustAccounts.Size = new System.Drawing.Size(82, 38);
+            this.btnCustAccounts.TabIndex = 6;
+            this.btnCustAccounts.Text = "Customer Accounts";
+            this.btnCustAccounts.UseVisualStyleBackColor = true;
+            // 
             // AllCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 461);
+            this.Controls.Add(this.btnCustAccounts);
             this.Controls.Add(this.btnMainMenu);
             this.Controls.Add(this.tssImageConnStatus);
             this.Controls.Add(this.btnDeleteCustomer);
@@ -125,6 +136,7 @@
         private System.Windows.Forms.Button btnDeleteCustomer;
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
         private System.Windows.Forms.Button btnMainMenu;
+        private System.Windows.Forms.Button btnCustAccounts;
     }
 }
 

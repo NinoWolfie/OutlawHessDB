@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAccounts = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCustomers = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,28 +42,10 @@
             this.lblUserID = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnAccounts
-            // 
-            this.btnAccounts.Location = new System.Drawing.Point(246, 30);
-            this.btnAccounts.Name = "btnAccounts";
-            this.btnAccounts.Size = new System.Drawing.Size(75, 23);
-            this.btnAccounts.TabIndex = 0;
-            this.btnAccounts.Text = "Select";
-            this.btnAccounts.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Accounts";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 64);
+            this.label2.Location = new System.Drawing.Point(72, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 3;
@@ -73,7 +53,7 @@
             // 
             // btnCustomers
             // 
-            this.btnCustomers.Location = new System.Drawing.Point(246, 59);
+            this.btnCustomers.Location = new System.Drawing.Point(239, 39);
             this.btnCustomers.Name = "btnCustomers";
             this.btnCustomers.Size = new System.Drawing.Size(75, 23);
             this.btnCustomers.TabIndex = 2;
@@ -84,7 +64,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 93);
+            this.label3.Location = new System.Drawing.Point(72, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 5;
@@ -92,7 +72,7 @@
             // 
             // btnProducts
             // 
-            this.btnProducts.Location = new System.Drawing.Point(246, 88);
+            this.btnProducts.Location = new System.Drawing.Point(239, 68);
             this.btnProducts.Name = "btnProducts";
             this.btnProducts.Size = new System.Drawing.Size(75, 23);
             this.btnProducts.TabIndex = 4;
@@ -103,7 +83,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(79, 122);
+            this.label4.Location = new System.Drawing.Point(72, 102);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 7;
@@ -111,7 +91,7 @@
             // 
             // btnTransactions
             // 
-            this.btnTransactions.Location = new System.Drawing.Point(246, 117);
+            this.btnTransactions.Location = new System.Drawing.Point(239, 97);
             this.btnTransactions.Name = "btnTransactions";
             this.btnTransactions.Size = new System.Drawing.Size(75, 23);
             this.btnTransactions.TabIndex = 6;
@@ -121,7 +101,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(79, 151);
+            this.label5.Location = new System.Drawing.Point(72, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 9;
@@ -129,7 +109,7 @@
             // 
             // btnLogOut
             // 
-            this.btnLogOut.Location = new System.Drawing.Point(246, 146);
+            this.btnLogOut.Location = new System.Drawing.Point(239, 126);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(75, 23);
             this.btnLogOut.TabIndex = 8;
@@ -140,7 +120,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(79, 179);
+            this.label6.Location = new System.Drawing.Point(72, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 13);
             this.label6.TabIndex = 11;
@@ -148,7 +128,7 @@
             // 
             // btnManageStaff
             // 
-            this.btnManageStaff.Location = new System.Drawing.Point(246, 174);
+            this.btnManageStaff.Location = new System.Drawing.Point(239, 154);
             this.btnManageStaff.Name = "btnManageStaff";
             this.btnManageStaff.Size = new System.Drawing.Size(75, 23);
             this.btnManageStaff.TabIndex = 10;
@@ -194,8 +174,6 @@
             this.Controls.Add(this.btnProducts);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCustomers);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnAccounts);
             this.Name = "MainMenu";
             this.Text = "MainMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
@@ -206,9 +184,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnAccounts;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCustomers;
         private System.Windows.Forms.Label label3;
