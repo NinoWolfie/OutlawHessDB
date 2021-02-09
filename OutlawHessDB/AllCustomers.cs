@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,8 +30,7 @@ namespace OutlawHessDB
         string loadCommand;
 
         public string[] customerArray = new string[9];
-
-        bool managerCheck;
+        string custID;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -78,19 +78,26 @@ namespace OutlawHessDB
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
             loadCommand = "update";
-            foreach (DataRow row in dtCustomer.Rows)
+            if (dgvCustomer.SelectedRows.Count == 1)
             {
-                if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())
+                foreach (DataRow row in dtCustomer.Rows)
                 {
-                    for (int i = 0; i < 9; i++)
+                    if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())
                     {
-                        customerArray[i] = dgvCustomer.SelectedCells[i].Value.ToString();
+                        for (int i = 0; i < 9; i++)
+                        {
+                            customerArray[i] = dgvCustomer.SelectedCells[i].Value.ToString();
+                        }
                     }
                 }
+                Form form = new CustomerDetailsForm(loadCommand, customerArray);
+                form.Show();
+                this.Dispose();
             }
-            Form form = new CustomerDetailsForm(loadCommand, customerArray);
-            form.Show();
-            this.Dispose();
+            else
+            {
+                MessageBox.Show("Please select a customer row");
+            }
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
@@ -115,6 +122,27 @@ namespace OutlawHessDB
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void btnCustAccounts_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomer.SelectedRows.Count == 1)
+            {
+                foreach (DataRow row in dtCustomer.Rows)
+                {
+                    if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())
+                    {
+                        custID = row["custid"].ToString();
+                    }
+                }
+                Form form = new CustomerAccounts(custID);
+                form.Show();
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer row");
+            }
         }
     }
 }

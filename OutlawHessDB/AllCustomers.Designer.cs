@@ -42,7 +42,9 @@
             // 
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Location = new System.Drawing.Point(13, 13);
+            this.dgvCustomer.MultiSelect = false;
             this.dgvCustomer.Name = "dgvCustomer";
+            this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomer.Size = new System.Drawing.Size(994, 425);
             this.dgvCustomer.TabIndex = 0;
             // 
@@ -107,6 +109,7 @@
             this.btnCustAccounts.TabIndex = 6;
             this.btnCustAccounts.Text = "Customer Accounts";
             this.btnCustAccounts.UseVisualStyleBackColor = true;
+            this.btnCustAccounts.Click += new System.EventHandler(this.btnCustAccounts_Click);
             // 
             // AllCustomers
             // 

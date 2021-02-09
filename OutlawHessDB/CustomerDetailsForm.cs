@@ -28,7 +28,7 @@ namespace OutlawHessDB
             InitializeComponent();
             loadCommand = loadFunction;
             count = 0;
-            foreach(string item in customerArray)
+            foreach (string item in customerArray)
             {
                 custArray[count] = customerArray[count];
                 count++;
@@ -51,7 +51,7 @@ namespace OutlawHessDB
                 txtCustPassword.Text = null;
                 txtCustAllowance.Text = null;
             }
-            else if(loadCommand == "update")
+            else if (loadCommand == "update")
             {
                 txtCustID.Text = custArray[0];
                 txtCustTitle.Text = custArray[1];
@@ -87,7 +87,7 @@ namespace OutlawHessDB
 
         private void btnSubmitCustDetails_Click(object sender, EventArgs e)
         {
-            if(loadCommand == "add")
+            if (loadCommand == "add")
             {
                 using (SQLiteCommand cmd = conn.CreateCommand())
                 {
@@ -114,7 +114,7 @@ namespace OutlawHessDB
                     this.Dispose();
                 }
             }
-            else if(loadCommand == "update")
+            else if (loadCommand == "update")
             {
                 using (SQLiteCommand cmd = conn.CreateCommand())
                 {
