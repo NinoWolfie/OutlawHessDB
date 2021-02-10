@@ -123,6 +123,12 @@ namespace OutlawHessDB
             Form NewForm = new Products();
             NewForm.Show();
         }
+
+        private void btnAccounts_Click(object sender, EventArgs e)
+        {
+            Form form = new AllAccounts();
+            form.Show();
+        }
     }
 }
 
