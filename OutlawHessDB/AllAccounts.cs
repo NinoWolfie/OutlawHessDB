@@ -101,6 +101,7 @@ namespace OutlawHessDB
                         accrued = double.Parse(rowAccounts["accrued"].ToString());
                         annualInterestRate = double.Parse(rowProducts["intrate"].ToString());
                         accrued = accrued + ((balance * annualInterestRate) / 365);
+                        accrued = Math.Round(accrued, 2);
                         using (SQLiteCommand cmd = conn.CreateCommand())
                         {
                             cmd.CommandText = @"UPDATE account Set accrued = @accrued Where accid = @accid AND custid = @custid";
@@ -115,7 +116,9 @@ namespace OutlawHessDB
                     }
                 }
             }
-            this.Refresh();
+            Form form = new AllAccounts();      //refresh() not working, using new form load
+            form.Show();
+            this.Dispose();
         }
 
         private void btnMainMenu_Click(object sender, EventArgs e)
