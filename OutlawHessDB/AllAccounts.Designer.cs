@@ -39,7 +39,10 @@
             // 
             this.dgvAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAccounts.Location = new System.Drawing.Point(13, 13);
+            this.dgvAccounts.MultiSelect = false;
             this.dgvAccounts.Name = "dgvAccounts";
+            this.dgvAccounts.ReadOnly = true;
+            this.dgvAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAccounts.Size = new System.Drawing.Size(765, 425);
             this.dgvAccounts.TabIndex = 0;
             // 
