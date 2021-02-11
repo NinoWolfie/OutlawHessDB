@@ -192,9 +192,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 13);
+            this.label1.Size = new System.Drawing.Size(286, 13);
             this.label1.TabIndex = 26;
-            this.label1.Text = "Update customer details";
+            this.label1.Text = "Update User details, Leave password blank if not changing";
             // 
             // btnCancelCustDetails
             // 
@@ -204,6 +204,7 @@
             this.btnCancelCustDetails.TabIndex = 25;
             this.btnCancelCustDetails.Text = "Cancel";
             this.btnCancelCustDetails.UseVisualStyleBackColor = true;
+            this.btnCancelCustDetails.Click += new System.EventHandler(this.btnCancelCustDetails_Click);
             // 
             // btnSubmitCustDetails
             // 
@@ -213,6 +214,7 @@
             this.btnSubmitCustDetails.TabIndex = 24;
             this.btnSubmitCustDetails.Text = "Submit";
             this.btnSubmitCustDetails.UseVisualStyleBackColor = true;
+            this.btnSubmitCustDetails.Click += new System.EventHandler(this.btnSubmitCustDetails_Click);
             // 
             // UserDetailsForm
             // 

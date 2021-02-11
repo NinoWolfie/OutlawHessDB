@@ -67,5 +67,67 @@ namespace OutlawHessDB
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnSubmitCustDetails_Click(object sender, EventArgs e)
+        {
+            if(loadCommand == "add")
+            {
+                if (string.IsNullOrWhiteSpace(txtUserPassword.Text))
+                {
+                    MessageBox.Show("Please enter a password");
+                    return;
+                }
+                using (SQLiteCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"Insert into customer(firstname, lastname, password, role, dob) values (@firstName, @lastName, @password, @role, @dob)";
+                    cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
+                    cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
+                    cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
+                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
+                    cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                DialogResult = MessageBox.Show("User details have been added", "User Details", MessageBoxButtons.OK);
+                if (DialogResult == DialogResult.OK)
+                {
+                    Form form = new Management();
+                    form.Show();
+                    this.Dispose();
+                }
+            }
+            else if(loadCommand == "update")
+            {
+                using (SQLiteCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE customer Set firstname = @firstName, lastname = @lastName, password = @password, role = @role, dob = @dob Where userid = @userid";
+                    cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
+                    cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
+                    cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
+                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
+                    cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                DialogResult = MessageBox.Show("User details have been updated", "User Details", MessageBoxButtons.OK);
+                if (DialogResult == DialogResult.OK)
+                {
+                    Form form = new Management();
+                    form.Show();
+                    this.Dispose();
+                }
+            }
+        }
+
+        private void btnCancelCustDetails_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
