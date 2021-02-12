@@ -100,7 +100,21 @@ namespace OutlawHessDB
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-
+            foreach (DataRow row in dtUsers.Rows)
+            {
+                if (dgvUsers.SelectedCells[0].Value.ToString() == row["custid"].ToString())
+                {
+                    using (SQLiteCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"DELETE FROM user Where userID = @userID";
+                        cmd.Parameters.AddWithValue("userID", row["userID"].ToString());
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            this.Refresh();
         }
     }
 }
