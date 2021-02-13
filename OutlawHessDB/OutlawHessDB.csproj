@@ -96,6 +96,12 @@
     <Compile Include="CustomerAccounts.Designer.cs">
       <DependentUpon>CustomerAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomerTransactionFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerTransactionFrom.Designer.cs">
+      <DependentUpon>CustomerTransactionFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="dbConnection.cs" />
     <Compile Include="AllCustomers.cs">
       <SubType>Form</SubType>
@@ -141,6 +147,12 @@
     <Compile Include="CustomerDetailsForm.Designer.cs">
       <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions.Designer.cs">
+      <DependentUpon>Transactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerAccounts.resx">
       <DependentUpon>CustomerAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerTransactionFrom.resx">
+      <DependentUpon>CustomerTransactionFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -183,6 +198,9 @@
     </Compile>
     <EmbeddedResource Include="CustomerDetailsForm.resx">
       <DependentUpon>CustomerDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions.resx">
+      <DependentUpon>Transactions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDetailsForm.resx">
       <DependentUpon>UserDetailsForm.cs</DependentUpon>
