@@ -49,6 +49,11 @@ namespace OutlawHessDB
             showProducts();
             showAccounts();
             showTransactions();
+
+            foreach(DataRow custRow in dtCustomers.Rows)
+            {
+                lbxCustomer.Items.Add(custRow["custid"].ToString() + ": " + custRow["title"].ToString() + " " + custRow["firstname"].ToString() + " " + custRow["lastname"]);
+            }
         }
 
         private void showCustomers()
