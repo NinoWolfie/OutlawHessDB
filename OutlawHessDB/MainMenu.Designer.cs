@@ -99,6 +99,7 @@
             this.btnTransactions.TabIndex = 6;
             this.btnTransactions.Text = "Select";
             this.btnTransactions.UseVisualStyleBackColor = true;
+            this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
             // 
             // label5
             // 

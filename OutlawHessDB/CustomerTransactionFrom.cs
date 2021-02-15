@@ -123,5 +123,61 @@ namespace OutlawHessDB
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void lbxCustomer_Click(object sender, EventArgs e)
+        {
+            lbxAccounts.Items.Clear();
+            foreach (DataRow rowCustomer in dtCustomers.Rows)
+            {
+                if (lbxCustomer.SelectedItem.ToString() == rowCustomer["custid"].ToString() + ": " + rowCustomer["title"].ToString() + " " + rowCustomer["firstname"].ToString() + " " + rowCustomer["lastname"])
+                {
+                    foreach (DataRow rowAccount in dtAccounts.Rows)
+                    {
+                        if(rowCustomer["custid"].ToString() == rowAccount["custid"].ToString())
+                        {
+                            foreach(DataRow rowProduct in dtProducts.Rows)
+                            {
+                                if(rowProduct["prodid"].ToString() == rowAccount["prodid"].ToString())
+                                {
+                                    lbxAccounts.Items.Add("Account ID: " + rowAccount["accid"].ToString() + " - " + rowProduct["isaname"].ToString());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void lbxAccounts_Click(object sender, EventArgs e)
+        {
+            lbxTransactions.Items.Clear();
+            foreach (DataRow rowProduct in dtProducts.Rows)
+            {
+                foreach (DataRow rowAccount in dtAccounts.Rows)
+                {
+                    if(lbxAccounts.SelectedItem.ToString() == "Account ID: " + rowAccount["accid"].ToString() + " - " + rowProduct["isaname"].ToString())
+                    {
+                        foreach (DataRow rowTransaction in dtTransactions.Rows)
+                        {
+                            if (rowAccount["accid"].ToString() == rowTransaction["accid"].ToString())
+                            {
+                                lbxTransactions.Items.Add(rowTransaction["action"].ToString() + ": " + rowTransaction["event"].ToString() + " - Amount: £" + rowTransaction["amnt"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnCustTransactions_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnMainMenu_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            Transactions.ActiveForm.Dispose();
+        }
     }
 }

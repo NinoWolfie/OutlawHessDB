@@ -129,6 +129,12 @@ namespace OutlawHessDB
             Form form = new AllAccounts();
             form.Show();
         }
+
+        private void btnTransactions_Click(object sender, EventArgs e)
+        {
+            Form form = new Transactions();
+            form.Show();
+        }
     }
 }
 

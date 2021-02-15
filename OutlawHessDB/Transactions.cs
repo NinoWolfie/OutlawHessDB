@@ -64,7 +64,8 @@ namespace OutlawHessDB
 
         private void btnCustTransactions_Click(object sender, EventArgs e)
         {
-
+            Form form = new CustomerTransactionFrom();
+            form.Show();
         }
     }
 }
