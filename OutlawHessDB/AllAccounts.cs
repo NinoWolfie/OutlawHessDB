@@ -25,12 +25,15 @@ namespace OutlawHessDB
         SQLiteConnection conn;
         SQLiteDataAdapter daAccounts;
         SQLiteDataAdapter daProducts;
+        SQLiteDataAdapter daTransactions;
         DataTable dtAccounts;
         DataTable dtProducts;
+        DataTable dtTransactions;
 
         double balance = 0;
         double accrued = 0;
         double annualInterestRate = 0;
+        double balancePlusAccruedInterest = 0;
         string accountID;
         string customerID;
 
@@ -48,6 +51,7 @@ namespace OutlawHessDB
             }
             showAllAccounts();
             productDetails();
+            transactionDetails();
         }
 
         private void showAllAccounts()
@@ -87,6 +91,23 @@ namespace OutlawHessDB
             }
         }
 
+        private void transactionDetails()
+        {
+            try
+            {
+                conn = new SQLiteConnection(dbConnection.source);
+                string sqlCommand = @"SELECT * FROM tranx";
+
+                daTransactions = new SQLiteDataAdapter(sqlCommand, conn);
+                dtTransactions = new DataTable();
+                daTransactions.Fill(dtTransactions);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btnBalAccruedCalc_Click(object sender, EventArgs e)
         {
             foreach(DataRow rowAccounts in dtAccounts.Rows)
@@ -114,6 +135,49 @@ namespace OutlawHessDB
                             conn.Close();
                         }
                     }
+                }
+            }
+            Form form = new AllAccounts();      //refresh() not working, using new form load
+            form.Show();
+            this.Dispose();
+        }
+
+        private void btnAnnualInterest_Click(object sender, EventArgs e)
+        {
+            foreach(DataRow rowInterest in dtAccounts.Rows)
+            {
+                balancePlusAccruedInterest = double.Parse(rowInterest["balance"].ToString()) + double.Parse(rowInterest["accrued"].ToString());
+                using(SQLiteCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE account Set balance = @balance Where accid = @accID";
+                    cmd.Parameters.AddWithValue("balance", balancePlusAccruedInterest);
+                    cmd.Parameters.AddWithValue("accid", rowInterest["accid"].ToString());
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                using (SQLiteCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"Insert into tranx(accid, action, amnt, event) values (@accid, @action, @amnt, @event)";
+                    cmd.Parameters.AddWithValue("accid", rowInterest["accid"].ToString());
+                    cmd.Parameters.AddWithValue("action", "interest");
+                    cmd.Parameters.AddWithValue("amnt", rowInterest["accrued"].ToString());
+                    cmd.Parameters.AddWithValue("event", System.DateTime.Now.ToString());
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                using (SQLiteCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE account Set accrued = @accrued Where accid = @accID";
+                    cmd.Parameters.AddWithValue("accrued", "0");
+                    cmd.Parameters.AddWithValue("accid", rowInterest["accid"].ToString());
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
             }
             Form form = new AllAccounts();      //refresh() not working, using new form load

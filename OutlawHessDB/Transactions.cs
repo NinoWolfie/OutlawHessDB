@@ -67,5 +67,10 @@ namespace OutlawHessDB
             Form form = new CustomerTransactionFrom();
             form.Show();
         }
+
+        private void btnMainMenu_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

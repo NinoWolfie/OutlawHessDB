@@ -32,6 +32,7 @@
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
             this.btnMainMenu = new System.Windows.Forms.Button();
             this.btnBalAccruedCalc = new System.Windows.Forms.Button();
+            this.btnAnnualInterest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccounts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // 
             // btnMainMenu
             // 
-            this.btnMainMenu.Location = new System.Drawing.Point(811, 80);
+            this.btnMainMenu.Location = new System.Drawing.Point(811, 136);
             this.btnMainMenu.Name = "btnMainMenu";
             this.btnMainMenu.Size = new System.Drawing.Size(82, 38);
             this.btnMainMenu.TabIndex = 17;
@@ -79,11 +80,22 @@
             this.btnBalAccruedCalc.UseVisualStyleBackColor = true;
             this.btnBalAccruedCalc.Click += new System.EventHandler(this.btnBalAccruedCalc_Click);
             // 
+            // btnAnnualInterest
+            // 
+            this.btnAnnualInterest.Location = new System.Drawing.Point(811, 80);
+            this.btnAnnualInterest.Name = "btnAnnualInterest";
+            this.btnAnnualInterest.Size = new System.Drawing.Size(82, 50);
+            this.btnAnnualInterest.TabIndex = 19;
+            this.btnAnnualInterest.Text = "Accrued Interest Deposit";
+            this.btnAnnualInterest.UseVisualStyleBackColor = true;
+            this.btnAnnualInterest.Click += new System.EventHandler(this.btnAnnualInterest_Click);
+            // 
             // AllAccounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 450);
+            this.Controls.Add(this.btnAnnualInterest);
             this.Controls.Add(this.btnBalAccruedCalc);
             this.Controls.Add(this.btnMainMenu);
             this.Controls.Add(this.tssImageConnStatus);
@@ -102,5 +114,6 @@
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
         private System.Windows.Forms.Button btnMainMenu;
         private System.Windows.Forms.Button btnBalAccruedCalc;
+        private System.Windows.Forms.Button btnAnnualInterest;
     }
 }
