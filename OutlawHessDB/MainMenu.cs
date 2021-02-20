@@ -47,18 +47,15 @@ namespace OutlawHessDB
 
             foreach(DataRow row in dtLogin.Rows)
             {
-                if (row["isloggedin"].ToString() == "yes")
+                if (row["role"].ToString() == "manager")
                 {
-                    if (row["role"].ToString() == "manager")
-                    {
-                        btnManageStaff.Visible = true;
-                        btnManageStaff.Enabled = true;
-                    }
-                    else
-                    {
-                        btnManageStaff.Visible = false;
-                        btnManageStaff.Enabled = false;
-                    }
+                    btnManageStaff.Visible = true;
+                    btnManageStaff.Enabled = true;
+                }
+                else
+                {
+                    btnManageStaff.Visible = false;
+                    btnManageStaff.Enabled = false;
                 }
             }            
         }
