@@ -73,7 +73,7 @@ namespace OutlawHessDB
                             userID = int.Parse(txtEmployeeNumber.Text);
                             if (row["password"].ToString() == txtPassword.Text)
                             {
-                                Form NewForm = new MainMenu(userID);
+                                Form NewForm = new MainMenu(userID);        //if both userid and password are correct, lines 76 - 80 opens main menu and clears textboxes
                                 NewForm.Show();
                                 this.Hide();
                                 txtEmployeeNumber.Text = null;
@@ -82,6 +82,8 @@ namespace OutlawHessDB
                             else
                             {
                                 MessageBox.Show("login incorrect");
+                                txtEmployeeNumber.Text = null;
+                                txtPassword.Text = null;
                             }
                         }
                         else
