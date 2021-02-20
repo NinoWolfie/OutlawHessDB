@@ -34,8 +34,8 @@ namespace OutlawHessDB
                 txtUserFirstName.Text = null;
                 txtUserLastName.Text = null;
                 txtUserPassword.Text = null;
-                txtUserRole.Text = null;
                 txtUserDOB.Text = null;
+                txtUserRole.Text = null;
             }
             else if (loadCommand == "update")
             {
@@ -43,8 +43,8 @@ namespace OutlawHessDB
                 txtUserFirstName.Text = userArray[1];
                 txtUserLastName.Text = userArray[2];
                 txtUserPassword.Text = userArray[3];
-                txtUserRole.Text = userArray[4];
-                txtUserDOB.Text = userArray[5];
+                txtUserDOB.Text = userArray[4];
+                txtUserRole.Text = userArray[5];
             }
 
             dbConnection.dbconnStatus(conn);
@@ -79,12 +79,12 @@ namespace OutlawHessDB
                 }
                 using (SQLiteCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"Insert into customer(firstname, lastname, password, role, dob) values (@firstName, @lastName, @password, @role, @dob)";
+                    cmd.CommandText = @"Insert into customer(firstname, lastname, password, role, dob) values (@firstName, @lastName, @password, @dob, @role)";
                     cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
                     cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
                     cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
-                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
                     cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
+                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -103,12 +103,12 @@ namespace OutlawHessDB
             {
                 using (SQLiteCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"UPDATE customer Set firstname = @firstName, lastname = @lastName, password = @password, role = @role, dob = @dob Where userid = @userid";
+                    cmd.CommandText = @"UPDATE customer Set firstname = @firstName, lastname = @lastName, password = @password, dob = @dob, role = @role Where userid = @userid";
                     cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
                     cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
                     cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
-                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
                     cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
+                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

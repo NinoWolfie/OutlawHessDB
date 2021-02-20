@@ -73,14 +73,6 @@ namespace OutlawHessDB
                             userID = int.Parse(txtEmployeeNumber.Text);
                             if (row["password"].ToString() == txtPassword.Text)
                             {
-                                if(row["role"].ToString() == "manager")     //if lines 71 - 74 are true, checks role for selected id, and stores it through lines 76 - 82
-                                {
-                                    manager = true;
-                                }
-                                else
-                                {
-                                    manager = false;
-                                }
                                 Form NewForm = new MainMenu(userID);
                                 NewForm.Show();
                                 this.Hide();
