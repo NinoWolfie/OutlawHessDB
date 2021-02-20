@@ -18,6 +18,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //global variables
         int userID = 0;
         dbConnection dbConnection = new dbConnection();
         string ex;
@@ -28,23 +29,23 @@ namespace OutlawHessDB
 
         private void Login_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
-            if(dbConnection.connStatus == true)
+            dbConnection.dbconnStatus(conn);    //runs function to check and establish a connection to the database being used
+            if(dbConnection.connStatus == true)     //if statement that checks the connection status and sets the status image based on the status
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
             }
             else if(dbConnection.connStatus == false)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.red;
-                MessageBox.Show(ex);
+                MessageBox.Show(ex);    //message show if false, message is connection error
             }
 
-            loginDetails();
+            loginDetails();     //runs function
         }
 
         private void loginDetails()
         {
-            try
+            try      //try/catch statement to pull data from the connected database, error displayed if failure occurs
             {
                 conn = new SQLiteConnection(dbConnection.source);
                 string sqlQuery = @"SELECT * FROM users";
@@ -61,34 +62,24 @@ namespace OutlawHessDB
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtEmployeeNumber.Text) == false)
+            if (string.IsNullOrWhiteSpace(txtEmployeeNumber.Text) == false)     //lines 65-67, validation of the textbox for employee name and password
             {
                 if(string.IsNullOrWhiteSpace(txtPassword.Text) == false)
                 {
-                    foreach (DataRow row in dtLogin.Rows)
+                    foreach (DataRow row in dtLogin.Rows)       //runs through each row of the selected table
                     {
-                        if (row["userID"].ToString() == txtEmployeeNumber.Text)
+                        if (row["userID"].ToString() == txtEmployeeNumber.Text)     //lines 71-74, checks the employee number, stores that, then checks the password relating to that id
                         {
                             userID = int.Parse(txtEmployeeNumber.Text);
                             if (row["password"].ToString() == txtPassword.Text)
                             {
-                                if(row["role"].ToString() == "manager")
+                                if(row["role"].ToString() == "manager")     //if lines 71 - 74 are true, checks role for selected id, and stores it through lines 76 - 82
                                 {
                                     manager = true;
                                 }
                                 else
                                 {
                                     manager = false;
-                                }
-                                using (SQLiteCommand cmd = conn.CreateCommand())
-                                {
-                                    cmd.CommandText = @"UPDATE users Set isloggedin = @isloggedin Where userId = @userID";
-                                    cmd.Parameters.AddWithValue("isloggedin", "yes");
-                                    cmd.Parameters.AddWithValue("userID", txtEmployeeNumber.Text);
-
-                                    conn.Open();
-                                    cmd.ExecuteNonQuery();
-                                    conn.Close();
                                 }
                                 Form NewForm = new MainMenu(userID);
                                 NewForm.Show();
