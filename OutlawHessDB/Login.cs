@@ -27,8 +27,8 @@ namespace OutlawHessDB
         DataTable dtLogin;
         bool manager;
 
-        private void Login_Load(object sender, EventArgs e)
-        {
+        private void Login_Load(object sender, EventArgs e)     //lines 32 - 61 are used multiple times through the application. Those other uses will be referred back to here -
+        {                                                           // - with specific differences commented on the specific function, da and dt variables will reflect the function and will not be mentioned 
             dbConnection.dbconnStatus(conn);    //runs function to check and establish a connection to the database being used
             if(dbConnection.connStatus == true)     //if statement that checks the connection status and sets the status image based on the status
             {
@@ -73,7 +73,7 @@ namespace OutlawHessDB
                             userID = int.Parse(txtEmployeeNumber.Text);
                             if (row["password"].ToString() == txtPassword.Text)
                             {
-                                Form NewForm = new MainMenu(userID);        //if both userid and password are correct, lines 76 - 80 opens main menu and clears textboxes
+                                Form NewForm = new MainMenu(userID);        //if both userid and password are correct, lines 76 - 80 opens main menu, hides login and clears textboxes
                                 NewForm.Show();
                                 this.Hide();
                                 txtEmployeeNumber.Text = null;
@@ -81,40 +81,43 @@ namespace OutlawHessDB
                             }
                             else
                             {
-                                MessageBox.Show("login incorrect");
+                                MessageBox.Show("Password incorrect");     //if incorrect password incorrect, shows message box and clears textboxes
                                 txtEmployeeNumber.Text = null;
                                 txtPassword.Text = null;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("user does not exits");
+                            MessageBox.Show("User does not exits");     //if userid does not exist, shows message box and clears textboxes
+                            txtEmployeeNumber.Text = null;
+                            txtPassword.Text = null;
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please enter a password");
+                    MessageBox.Show("Please enter a password");     //if password is left blank, message box is shown and function is ended
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("Please enter your employee number");
+                MessageBox.Show("Please enter your employee number");       //if employee number is left blank, message box is shown and function is ended
                 return;
             }
         }
 
         private void btnPasswordHelp_Click(object sender, EventArgs e)
         {
-            Form NewForm = new PasswordHelp();
+            Form NewForm = new PasswordHelp();      //when password help button is clicked, opens new form and hides login form
             NewForm.Show();
             this.Hide();
         }
 
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();     //due to some windows staying open when form close button is clicked, added this to each page that seems to fail to close the 
+                                    //application as intended when close button is used
         }
     }
 }

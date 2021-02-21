@@ -18,6 +18,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //global variables
         dbConnection dbConnection = new dbConnection();
         string ex;
         SQLiteConnection conn; 
@@ -26,6 +27,7 @@ namespace OutlawHessDB
 
         private void PasswordHelp_Load(object sender, EventArgs e)
         {
+            //lines 31 - 39 set the starting state of the respective controls
             txtFirstName.Text = null;
             txtLastName.Text = null;
             txtDOB.Text = null;
@@ -36,7 +38,7 @@ namespace OutlawHessDB
             lblNewPassword.Visible = false;
             btnConfirmPassword.Enabled = false;
 
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //Lines 41 - 70, see login.cs lines 32 - 61
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -71,15 +73,15 @@ namespace OutlawHessDB
         {
             if(string.IsNullOrWhiteSpace(txtEmployeeID.Text) || string.IsNullOrWhiteSpace(txtFirstName.Text) || string.IsNullOrWhiteSpace(txtLastName.Text) || string.IsNullOrWhiteSpace(txtDOB.Text))
             {
-                lblDetails.Text = "Please fill out all the boxes with the correct details";
+                lblDetails.Text = "Please fill out all the boxes with the correct details";     //if above statement is true on any account, message box appears
             }
             else
             {
-                foreach (DataRow row in dtPasswordHelp.Rows)
+                foreach (DataRow row in dtPasswordHelp.Rows)        //if the statement is found to be false on all counts, foreach statement loops through datatable
                 {
                     if (row["userID"].ToString() == txtEmployeeID.Text && row["firstname"].ToString() == txtFirstName.Text && row["lastname"].ToString() == txtLastName.Text && row["dob"].ToString() == txtDOB.Text)
                     {
-                        lblDetails.Text = "Your details are correct";
+                        lblDetails.Text = "Your details are correct";       //if line 82 statement is true, displays text in label and shows several hidden items and enables a button
                         txtNewPassword.Visible = true;
                         btnConfirmPassword.Visible = true;
                         lblNewPassword.Visible = true;
@@ -87,7 +89,7 @@ namespace OutlawHessDB
                     }
                     else
                     {
-                        lblDetails.Text = "Your details are incorrect, try again or contact your supervisor";
+                        lblDetails.Text = "Your details are incorrect, try again or contact your supervisor";   //if line 82 statement false label displays text and text boxes clear
                         txtFirstName.Text = null;
                         txtLastName.Text = null;
                         txtDOB.Text = null;
@@ -95,12 +97,12 @@ namespace OutlawHessDB
                 }
             }
 
-            lblDetails.Visible = true;
+            lblDetails.Visible = true;      //shows the label once an outcome has been reached
         }
 
         private void btnConfirmPassword_Click(object sender, EventArgs e)
         {
-            using(SQLiteCommand cmd = conn.CreateCommand())
+            using(SQLiteCommand cmd = conn.CreateCommand())     //When button click event occurs, sets variables for SQL command and runs the SQL code to update the specific database table
             {
                 cmd.CommandText = @"UPDATE users Set password = @newPassword Where userID = @employeeID";
                 cmd.Parameters.AddWithValue("newPassword", txtNewPassword.Text);
@@ -111,8 +113,8 @@ namespace OutlawHessDB
                 conn.Close();
             }
 
-            DialogResult = MessageBox.Show("Your password has been updated", "Password Updated", MessageBoxButtons.OK);
-            if(DialogResult == DialogResult.OK)
+            DialogResult = MessageBox.Show("Your password has been updated", "Password Updated", MessageBoxButtons.OK);     //when SQL command has been run, message box appears confirming this
+            if(DialogResult == DialogResult.OK)     //clicking dialog button shows login form and disposes this form
             {
                 Form form = new Login();
                 form.Show();

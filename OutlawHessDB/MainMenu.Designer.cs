@@ -137,6 +137,7 @@
             this.btnManageStaff.TabIndex = 10;
             this.btnManageStaff.Text = "Select";
             this.btnManageStaff.UseVisualStyleBackColor = true;
+            this.btnManageStaff.Click += new System.EventHandler(this.btnManageStaff_Click);
             // 
             // tssImageConnStatus
             // 

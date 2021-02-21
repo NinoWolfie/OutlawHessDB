@@ -13,26 +13,25 @@ namespace OutlawHessDB
 {
     public partial class MainMenu : Form
     {
+        //Global Variables
         Login login = new Login();
         dbConnection dbConnection = new dbConnection();
         string ex;
         SQLiteConnection conn;
         SQLiteDataAdapter daLogin;
         DataTable dtLogin;
+        int userID = 0;
 
         public MainMenu(int userIDCheck)
         {
             InitializeComponent();
-            userID = userIDCheck;
+            userID = userIDCheck;           //Pulls userID from login.cs and diplays it
             lblUserID.Text = "User logged in: " + userID;
         }
 
-        int userID = 0;
-        bool manager;
-
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //Lines 34 - 45 & 62 - 77, see login.cs lines 32 - 61
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -45,16 +44,16 @@ namespace OutlawHessDB
 
             loginDetailsMainMenu();
 
-            foreach(DataRow row in dtLogin.Rows)
+            foreach(DataRow row in dtLogin.Rows)        
             {
-                if (row["role"].ToString() == "manager")
+                if (row["role"].ToString() == "manager" && row["userid"].ToString() == userID.ToString())
                 {
-                    btnManageStaff.Visible = true;
+                    btnManageStaff.Visible = true;      //if above statement is true, sets btnManageStaff to visible and enabled
                     btnManageStaff.Enabled = true;
                 }
                 else
                 {
-                    btnManageStaff.Visible = false;
+                    btnManageStaff.Visible = false;     //if statement is false, sets btnManageStaff to not visible or enabled
                     btnManageStaff.Enabled = false;
                 }
             }            
@@ -77,42 +76,10 @@ namespace OutlawHessDB
             }
         }
 
-        private void btnCustomers_Click(object sender, EventArgs e)
+        private void btnCustomers_Click(object sender, EventArgs e)     //lines 79 - 107 use buttons to open specific forms
         {
             Form NewForm = new AllCustomers();
             NewForm.Show();
-        }
-
-        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            using (SQLiteCommand cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = @"UPDATE users Set isloggedin = @isloggedin Where userId = @userID";
-                cmd.Parameters.AddWithValue("isloggedin", "no");
-                cmd.Parameters.AddWithValue("userID", userID);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            Application.Exit();
-        }
-
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            using (SQLiteCommand cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = @"UPDATE users Set isloggedin = @isloggedin Where userId = @userID";
-                cmd.Parameters.AddWithValue("isloggedin", "no");
-                cmd.Parameters.AddWithValue("userID", userID);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            Form form = new Login();
-            form.Show();
-            this.Dispose();
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
@@ -131,6 +98,24 @@ namespace OutlawHessDB
         {
             Form form = new Transactions();
             form.Show();
+        }
+
+        private void btnManageStaff_Click(object sender, EventArgs e)
+        {
+            Form form = new Management();
+            form.Show();
+        }
+
+        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();     //closes application
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Form form = new Login();    //closes this form and opens login form
+            form.Show();
+            this.Dispose();
         }
     }
 }
