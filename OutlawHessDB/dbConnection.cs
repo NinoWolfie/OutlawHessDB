@@ -9,16 +9,17 @@ namespace OutlawHessDB
 {
     class dbConnection
     {
-        public static string source = @"Data Source = ..\bandits.db";
+        public static string source = @"Data Source = ..\bandits.db";       //sets location of database file in project folder
 
-        public bool connStatus;
-        public string exception;
+        //variables
+        public bool connStatus;     //used to confirm connection visually in forms
+        public string exception;        //used to pass error message to forms if needed
 
         public void dbconnStatus(SQLiteConnection conn)
         {
-            exception = null;
+            exception = null;       //clears exception
 
-            try
+            try       //try catch to create and check connection to database and sets connection status
             {
                 conn = new SQLiteConnection();
                 conn.ConnectionString = dbConnection.source;
@@ -28,7 +29,7 @@ namespace OutlawHessDB
                     connStatus = true;
 
             }
-            catch (Exception ex)
+            catch (Exception ex)        //catch will set exception value to error that has occured if an error occurs
             {
                 if (conn.State == System.Data.ConnectionState.Open)
                     conn.Close();

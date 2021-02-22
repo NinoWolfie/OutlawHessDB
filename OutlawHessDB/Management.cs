@@ -110,9 +110,9 @@ namespace OutlawHessDB
             this.Refresh();     //refreshes this form with updated table
         }
 
-        private void btnMainMenu_Click(object sender, EventArgs e)
+        private void btnMainMenu_Click(object sender, EventArgs e)      //closes this form if clicked
         {
-            this.Dispose();     //disposes this form
+            this.Dispose();
         }
     }
 }

@@ -96,11 +96,11 @@ namespace OutlawHessDB
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            foreach (DataRow row in dtCustomer.Rows)
+            foreach (DataRow row in dtCustomer.Rows)        //loops through each row of table
             {
-                if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())
+                if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())      //check to see if selected dgvCustomer userid is the same as the table userid
                 {
-                    using (SQLiteCommand cmd = conn.CreateCommand())
+                    using (SQLiteCommand cmd = conn.CreateCommand())        //if above is true, sets SQL query based on custid of table row in loop, opens connection, runs the query, closes the connection
                     {
                         cmd.CommandText = @"DELETE FROM customer Where custid = @custID";
                         cmd.Parameters.AddWithValue("custID", row["custid"].ToString());
@@ -110,31 +110,26 @@ namespace OutlawHessDB
                     }
                 }
             }
-            this.Refresh();
+            Form form = new AllCustomers();      //refresh() not working, using new form load
+            form.Show();
+            this.Dispose();
         }
 
         private void btnCustAccounts_Click(object sender, EventArgs e)
         {
-            if (dgvCustomer.SelectedRows.Count == 1)
+            foreach (DataRow row in dtCustomer.Rows)        //runs loop for each row in table
             {
-                foreach (DataRow row in dtCustomer.Rows)
+                if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())      //checks if custid of selected row of dgvCustomer is equal to row custid
                 {
-                    if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())
-                    {
-                        custID = row["custid"].ToString();
-                    }
+                    custID = row["custid"].ToString();      //if true, sets custID to custid of row
                 }
-                Form form = new CustomerAccounts(custID);
-                form.Show();
-                this.Dispose();
             }
-            else
-            {
-                MessageBox.Show("Please select a customer row");
-            }
+            Form form = new CustomerAccounts(custID);       //lines 125 - 127, opens new CustomerAccounts form, passes custID through to new form and disposes this form
+            form.Show();
+            this.Dispose();
         }
 
-        private void btnMainMenu_Click(object sender, EventArgs e)
+        private void btnMainMenu_Click(object sender, EventArgs e)      //closes this form if clicked
         {
             this.Dispose();
         }

@@ -13,29 +13,27 @@ namespace OutlawHessDB
 {
     public partial class CustomerDetailsForm : Form
     {
+        //global variables and class call
         string loadCommand;
         string[] custArray = new string[9];
         int count = 0;
-
         dbConnection dbConnection = new dbConnection();
         string ex;
         SQLiteConnection conn;
 
-        bool managerCheck;
-
         public CustomerDetailsForm(string loadFunction, string[] customerArray)
         {
             InitializeComponent();
-            loadCommand = loadFunction;
+            loadCommand = loadFunction;     //on form initialisation, sets loadCommand equal to loadFunction, resets count to 0
             count = 0;
-            foreach (string item in customerArray)
+            foreach (string item in customerArray)      //populates custArray based on customerArray for use in form. Count increase each iteration to match array index that is to be read
             {
                 custArray[count] = customerArray[count];
                 count++;
             }
         }
 
-        AllCustomers allCustomers;
+        AllCustomers allCustomers;      //allows AllCustomers to be called when closing the form
 
         private void CustomerDetails_Load(object sender, EventArgs e)
         {
@@ -64,7 +62,7 @@ namespace OutlawHessDB
                 txtCustAllowance.Text = custArray[8];
             }
 
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //lines 65 - 83, see lines 33 - 62 of login.cs. Try catch statement only validates the connection, does not pull data from database
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -109,8 +107,7 @@ namespace OutlawHessDB
                 DialogResult = MessageBox.Show("Customer details have been added", "Customer Details", MessageBoxButtons.OK);
                 if (DialogResult == DialogResult.OK)
                 {
-                    Form form = new AllCustomers();
-                    form.Show();
+                    allCustomers.Show();
                     this.Dispose();
                 }
             }
