@@ -13,7 +13,7 @@ namespace OutlawHessDB
 {
     public partial class MainMenu : Form
     {
-        //Global Variables
+        //Global Variables and class call
         Login login = new Login();
         dbConnection dbConnection = new dbConnection();
         string ex;
@@ -31,7 +31,7 @@ namespace OutlawHessDB
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);        //Lines 34 - 45 & 62 - 77, see login.cs lines 32 - 61
+            dbConnection.dbconnStatus(conn);        //Lines 34 - 45 & 64 - 79, see login.cs lines 33 - 62
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -44,17 +44,19 @@ namespace OutlawHessDB
 
             loginDetailsMainMenu();
 
-            foreach(DataRow row in dtLogin.Rows)        
+            foreach(DataRow row in dtLogin.Rows)      //set to break if either statement is true  
             {
                 if (row["role"].ToString() == "manager" && row["userid"].ToString() == userID.ToString())
                 {
                     btnManageStaff.Visible = true;      //if above statement is true, sets btnManageStaff to visible and enabled
                     btnManageStaff.Enabled = true;
+                    break;
                 }
-                else
+                else if (row["role"].ToString() != "manager" && row["userid"].ToString() == userID.ToString())
                 {
-                    btnManageStaff.Visible = false;     //if statement is false, sets btnManageStaff to not visible or enabled
+                    btnManageStaff.Visible = false;     //if else if statement is false, sets btnManageStaff to not visible or enabled
                     btnManageStaff.Enabled = false;
+                    break;
                 }
             }            
         }
@@ -76,7 +78,7 @@ namespace OutlawHessDB
             }
         }
 
-        private void btnCustomers_Click(object sender, EventArgs e)     //lines 79 - 107 use buttons to open specific forms
+        private void btnCustomers_Click(object sender, EventArgs e)     //lines 81 - 109 use buttons to open specific forms
         {
             Form NewForm = new AllCustomers();
             NewForm.Show();

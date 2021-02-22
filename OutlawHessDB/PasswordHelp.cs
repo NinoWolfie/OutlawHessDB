@@ -38,7 +38,7 @@ namespace OutlawHessDB
             lblNewPassword.Visible = false;
             btnConfirmPassword.Enabled = false;
 
-            dbConnection.dbconnStatus(conn);        //Lines 41 - 70, see login.cs lines 32 - 61
+            dbConnection.dbconnStatus(conn);        //Lines 41 - 70, see login.cs lines 33 - 62
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;

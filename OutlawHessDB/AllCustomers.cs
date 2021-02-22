@@ -19,6 +19,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //global variables
         dbConnection dbConnection = new dbConnection();
         MainMenu mainMenu;
         string ex;
@@ -34,7 +35,7 @@ namespace OutlawHessDB
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //lines 38 - 69, see login.cs lines 33 - 62
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -57,7 +58,7 @@ namespace OutlawHessDB
                 daCustomer = new SQLiteDataAdapter(sqlCommand, conn);
                 dtCustomer = new DataTable();
                 daCustomer.Fill(dtCustomer);
-                dgvCustomer.DataSource = dtCustomer;
+                dgvCustomer.DataSource = dtCustomer;        //lines 61 - 63 populates and sets properties of dgvCustomer
                 dgvCustomer.AutoResizeColumns();
                 dgvCustomer.MultiSelect = false;
             }
@@ -69,7 +70,7 @@ namespace OutlawHessDB
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            loadCommand = "add";
+            loadCommand = "add";        //Lines 70 - 73 loads CustomerDetailsForm, passes loadCommand value to be used in the form and closes this form
             Form form = new CustomerDetailsForm(loadCommand, customerArray);
             form.Show();
             this.Dispose();
@@ -77,27 +78,20 @@ namespace OutlawHessDB
 
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
-            loadCommand = "update";
-            if (dgvCustomer.SelectedRows.Count == 1)
+            loadCommand = "update";     //sets loadCommand value
+            foreach (DataRow row in dtCustomer.Rows)        //runs through each row in table
             {
-                foreach (DataRow row in dtCustomer.Rows)
+                if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())      //makes sure the custid of the selected row is equal to the custid of the current row in the foreach loop
                 {
-                    if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())
+                    for (int i = 0; i < 9; i++)     //populates an array to be passed to customerDetailsForm, the number of indexes is equal to the number of columns in the customer table
                     {
-                        for (int i = 0; i < 9; i++)
-                        {
-                            customerArray[i] = dgvCustomer.SelectedCells[i].Value.ToString();
-                        }
+                        customerArray[i] = dgvCustomer.SelectedCells[i].Value.ToString();
                     }
                 }
-                Form form = new CustomerDetailsForm(loadCommand, customerArray);
-                form.Show();
-                this.Dispose();
             }
-            else
-            {
-                MessageBox.Show("Please select a customer row");
-            }
+            Form form = new CustomerDetailsForm(loadCommand, customerArray);        //lines 92 - 94 loads new form, passes data through to the form and closes this form
+            form.Show();
+            this.Dispose();
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
@@ -119,11 +113,6 @@ namespace OutlawHessDB
             this.Refresh();
         }
 
-        private void btnMainMenu_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-
         private void btnCustAccounts_Click(object sender, EventArgs e)
         {
             if (dgvCustomer.SelectedRows.Count == 1)
@@ -143,6 +132,11 @@ namespace OutlawHessDB
             {
                 MessageBox.Show("Please select a customer row");
             }
+        }
+
+        private void btnMainMenu_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
