@@ -18,6 +18,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //Global Variables and class call
         dbConnection dbConnection = new dbConnection();
         MainMenu mainMenu;
         string ex;
@@ -39,7 +40,7 @@ namespace OutlawHessDB
 
         private void AllAccounts_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //lines 43 - 110, see login.cs lines 33 - 62. Two additional functions are being used in the same format as the function in login.cs referenced
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -110,11 +111,11 @@ namespace OutlawHessDB
 
         private void btnBalAccruedCalc_Click(object sender, EventArgs e)
         {
-            foreach(DataRow rowAccounts in dtAccounts.Rows)
+            foreach(DataRow rowAccounts in dtAccounts.Rows)     //foreach loop runs through account table
             {
-                foreach (DataRow rowProducts in dtProducts.Rows)
+                foreach (DataRow rowProducts in dtProducts.Rows)    //foreach loop runs through product table
                 {
-                    if (rowAccounts["prodid"].ToString() == rowProducts["prodid"].ToString())
+                    if (rowAccounts["prodid"].ToString() == rowProducts["prodid"].ToString())       //if statement that checks is account table prodid and product table prodid
                     {
                         accountID = rowAccounts["accid"].ToString();
                         customerID = rowAccounts["custid"].ToString();
@@ -134,6 +135,7 @@ namespace OutlawHessDB
                             cmd.ExecuteNonQuery();
                             conn.Close();
                         }
+                        break;
                     }
                 }
             }
