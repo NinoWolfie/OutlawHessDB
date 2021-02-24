@@ -87,7 +87,7 @@ namespace OutlawHessDB
         {
             if (loadCommand == "add")
             {
-                using (SQLiteCommand cmd = conn.CreateCommand())
+                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 88 is true, runs command to add a customer by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"Insert into customer(title, firstname, lastname, dob, nicode, email, password, allowance) values (@title, @firstName, @lastName, @dob, @niCode, @email, @password, @allowance)";
                     cmd.Parameters.AddWithValue("title", txtCustTitle.Text);
@@ -104,7 +104,7 @@ namespace OutlawHessDB
                     conn.Close();
                 }
 
-                DialogResult = MessageBox.Show("Customer details have been added", "Customer Details", MessageBoxButtons.OK);
+                DialogResult = MessageBox.Show("Customer details have been added", "Customer Details", MessageBoxButtons.OK);       //opens message and then, on DialogResult, shows allCustomer form and disposes this form
                 if (DialogResult == DialogResult.OK)
                 {
                     allCustomers.Show();
@@ -113,7 +113,7 @@ namespace OutlawHessDB
             }
             else if (loadCommand == "update")
             {
-                using (SQLiteCommand cmd = conn.CreateCommand())
+                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 114 is true, runs command to updates a customer by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"UPDATE customer Set title = @title, firstname = @firstName, lastname = @lastName, dob = @dob,
                     nicode = @niCode, email = @email, password = @password, allowance = @allowance Where custid = @custID";
@@ -132,7 +132,7 @@ namespace OutlawHessDB
                     conn.Close();
                 }
 
-                DialogResult = MessageBox.Show("Customer details have been updated", "Customer Details", MessageBoxButtons.OK);
+                DialogResult = MessageBox.Show("Customer details have been updated", "Customer Details", MessageBoxButtons.OK);     //opens message and then, on DialogResult, shows allCustomer form and disposes this form
                 if (DialogResult == DialogResult.OK)
                 {
                     allCustomers.Show();
