@@ -160,8 +160,8 @@ namespace OutlawHessDB
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-                using (SQLiteCommand cmd = conn.CreateCommand())        //runs command to update an accounts by opening a connection, running the query and closing the connection
-                {
+                using (SQLiteCommand cmd = conn.CreateCommand())        //runs command to insert the transaction for the above account balance update by opening a connection, 
+                {                                                       //running the query and closing the connection
                     cmd.CommandText = @"Insert into tranx(accid, action, amnt, event) values (@accid, @action, @amnt, @event)";
                     cmd.Parameters.AddWithValue("accid", rowInterest["accid"].ToString());
                     cmd.Parameters.AddWithValue("action", "interest");
