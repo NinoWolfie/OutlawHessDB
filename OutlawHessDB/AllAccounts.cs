@@ -148,7 +148,8 @@ namespace OutlawHessDB
         {
             foreach(DataRow rowInterest in dtAccounts.Rows)     //iterates through each row in accounts table
             {
-                balancePlusAccruedInterest = Math.Round(double.Parse(rowInterest["balance"].ToString()) + double.Parse(rowInterest["accrued"].ToString()), 2);
+                balancePlusAccruedInterest = Math.Round(double.Parse(rowInterest["balance"].ToString()) + double.Parse(rowInterest["accrued"].ToString()), 2);      //adds accrued to balance and rounds to 
+                                                                                                                                                     //2sf to prevent adding issue that causes excessive sf
                 using(SQLiteCommand cmd = conn.CreateCommand())     //runs command to update an accounts by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"UPDATE account Set balance = @balance, accrued = @accrued Where accid = @accID";
