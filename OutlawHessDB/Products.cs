@@ -18,6 +18,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //Global Variables and class call
         dbConnection dbConnection = new dbConnection();
         string ex;
         SQLiteConnection conn;
@@ -26,7 +27,7 @@ namespace OutlawHessDB
 
         private void Products_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);    //lines 30 - 64, see lines 33 - 62 in login.cs
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -41,7 +42,7 @@ namespace OutlawHessDB
 
             foreach(DataRow row in dtProduct.Rows)
             {
-                lbxProducts.Items.Add(row["prodid"].ToString() + ": " + row["isaname"].ToString());
+                lbxProducts.Items.Add(row["prodid"].ToString() + ": " + row["isaname"].ToString());     //adds string item to listbox
             }
         }
 
@@ -64,7 +65,7 @@ namespace OutlawHessDB
 
         private void lbxProducts_Click(object sender, EventArgs e)
         {
-            foreach(DataRow row in dtProduct.Rows)
+            foreach(DataRow row in dtProduct.Rows)      //lines 68 - 82, checks details of list item next to row in product table and sets radiobutton to status, then shows the interest rate in textbox
             {
                 if (lbxProducts.SelectedItem.ToString() == row["prodid"].ToString() + ": " + row["isaname"].ToString())
                 {
@@ -83,15 +84,15 @@ namespace OutlawHessDB
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            foreach (DataRow row in dtProduct.Rows)
+            foreach (DataRow row in dtProduct.Rows)     //iterates through each row of product table
             {
-                if (lbxProducts.SelectedItem.ToString() == row["prodid"].ToString() + ": " + row["isaname"].ToString())
+                if (lbxProducts.SelectedItem.ToString() == row["prodid"].ToString() + ": " + row["isaname"].ToString())     //checks that table prodid and isaname concatenated equals the listbox item
                 {
-                    if (row["status"].ToString() == "closed")
+                    if (row["status"].ToString() == "closed")       
                     {
-                        if (rbtnOpen.Checked == true)
+                        if (rbtnOpen.Checked == true)       //if statement above is true, checks if rbtnOpen is checked
                         {
-                            using (SQLiteCommand cmd = conn.CreateCommand())
+                            using (SQLiteCommand cmd = conn.CreateCommand())    //if above statement is true, runs update function to change status to checked rbtn value
                             {
                                 cmd.CommandText = @"UPDATE product Set status = @status Where prodid = @prodid";
                                 cmd.Parameters.AddWithValue("status", "open");
@@ -103,11 +104,11 @@ namespace OutlawHessDB
                             }
                         }
                     }
-                    if (row["status"].ToString() == "open")
+                    else if (row["status"].ToString() == "open")     //if line 91 is not true, checks this statement
                     {
-                        if (rbtnClosed.Checked == true)
+                        if (rbtnClosed.Checked == true)     //if statement above is true, checks if rbtnClosed is checked
                         {
-                            using (SQLiteCommand cmd = conn.CreateCommand())
+                            using (SQLiteCommand cmd = conn.CreateCommand())    //if above statement is true, runs update function to change status to checked rbtn value
                             {
                                 cmd.CommandText = @"UPDATE product Set status = @status Where prodid = @prodid";
                                 cmd.Parameters.AddWithValue("status", "closed");
@@ -119,7 +120,7 @@ namespace OutlawHessDB
                             }
                         }
                     }
-                    using (SQLiteCommand cmd = conn.CreateCommand())
+                    using (SQLiteCommand cmd = conn.CreateCommand())        //runs update function to update intrate if this is changed
                     {
                         cmd.CommandText = @"UPDATE product Set intrate = @intrate Where prodid = @prodid";
                         cmd.Parameters.AddWithValue("intrate", txtInterestRate.Text);
@@ -129,14 +130,14 @@ namespace OutlawHessDB
                         cmd.ExecuteNonQuery();
                         conn.Close();
                     }
-                    this.Dispose();
+                    this.Dispose();     //disposes this form
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Dispose();     //disposes this form with no changes
         }
     }
 }

@@ -33,7 +33,7 @@
             this.rbtnOpen = new System.Windows.Forms.RadioButton();
             this.rbtnClosed = new System.Windows.Forms.RadioButton();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
             this.txtInterestRate = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -89,15 +89,15 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.Location = new System.Drawing.Point(178, 290);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnCancel.Location = new System.Drawing.Point(178, 290);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // tssImageConnStatus
             // 
@@ -136,7 +136,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtInterestRate);
             this.Controls.Add(this.tssImageConnStatus);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.rbtnClosed);
             this.Controls.Add(this.rbtnOpen);
@@ -157,7 +157,7 @@
         private System.Windows.Forms.RadioButton rbtnOpen;
         private System.Windows.Forms.RadioButton rbtnClosed;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
         private System.Windows.Forms.TextBox txtInterestRate;
         private System.Windows.Forms.Label label2;
