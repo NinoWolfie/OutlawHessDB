@@ -60,7 +60,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 30 for additional details
         }
 
         private void lbxProducts_Click(object sender, EventArgs e)

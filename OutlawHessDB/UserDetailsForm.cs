@@ -129,7 +129,7 @@ namespace OutlawHessDB
                     conn.Close();       //closes connection to database
                 }
 
-                DialogResult = MessageBox.Show("User details have been updated", "User Details", MessageBoxButtons.OK);
+                DialogResult = MessageBox.Show("User details have been updated", "User Details", MessageBoxButtons.OK);     //dialogResult shows message box, opens new Management Form and disposes of this form
                 if (DialogResult == DialogResult.OK)
                 {
                     Form form = new Management();

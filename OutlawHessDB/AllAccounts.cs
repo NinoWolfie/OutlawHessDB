@@ -106,7 +106,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 43 for additional details
         }
 
         private void btnBalAccruedCalc_Click(object sender, EventArgs e)

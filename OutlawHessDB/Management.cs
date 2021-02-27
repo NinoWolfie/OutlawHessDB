@@ -62,7 +62,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 35 for additional details
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)

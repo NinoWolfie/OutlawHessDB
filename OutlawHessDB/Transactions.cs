@@ -18,6 +18,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //global variables and class call
         dbConnection dbConnection = new dbConnection();
         MainMenu mainMenu;
         string ex;
@@ -28,7 +29,7 @@ namespace OutlawHessDB
 
         private void Transactions_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //lines 32 - 64, see login.cs lines 33 - 62
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -52,17 +53,17 @@ namespace OutlawHessDB
                 daTransactions = new SQLiteDataAdapter(sqlCommand, conn);
                 dtTransactions = new DataTable();
                 daTransactions.Fill(dtTransactions);
-                dgvTransactions.DataSource = dtTransactions;
+                dgvTransactions.DataSource = dtTransactions;        //lines 56 - 58 populates dgvTransactions
                 dgvTransactions.AutoResizeColumns();
                 dgvTransactions.MultiSelect = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 32 for additional details
         }
 
-        private void btnCustTransactions_Click(object sender, EventArgs e)
+        private void btnCustTransactions_Click(object sender, EventArgs e)      //clicking this opens CustomerTransactionFrom and shows it
         {
             Form form = new CustomerTransactionFrom();
             form.Show();
@@ -70,7 +71,7 @@ namespace OutlawHessDB
 
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Dispose();     //disposes this form
         }
     }
 }

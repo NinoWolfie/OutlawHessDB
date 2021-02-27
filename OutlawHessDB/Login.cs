@@ -58,7 +58,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

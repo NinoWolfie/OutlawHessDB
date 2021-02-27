@@ -75,7 +75,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 34 for additional details
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)     //lines 81 - 109 use buttons to open specific forms

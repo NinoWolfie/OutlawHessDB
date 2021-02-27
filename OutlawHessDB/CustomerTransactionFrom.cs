@@ -18,6 +18,7 @@ namespace OutlawHessDB
             InitializeComponent();
         }
 
+        //Global Variables and class call
         dbConnection dbConnection = new dbConnection();
         MainMenu mainMenu;
         string ex;
@@ -34,7 +35,7 @@ namespace OutlawHessDB
 
         private void CustomerTransactionFrom_Load(object sender, EventArgs e)
         {
-            dbConnection.dbconnStatus(conn);
+            dbConnection.dbconnStatus(conn);        //lines 38 - 126, see lines 33 - 62 in login.cs
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -50,7 +51,7 @@ namespace OutlawHessDB
             showAccounts();
             showTransactions();
 
-            foreach(DataRow custRow in dtCustomers.Rows)
+            foreach(DataRow custRow in dtCustomers.Rows)        //iterates through each row in customer table and adds listbox item based on values in line 56
             {
                 lbxCustomer.Items.Add(custRow["custid"].ToString() + ": " + custRow["title"].ToString() + " " + custRow["firstname"].ToString() + " " + custRow["lastname"]);
             }
@@ -121,25 +122,27 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 38 for additional details
         }
 
         private void lbxCustomer_Click(object sender, EventArgs e)
         {
-            lbxAccounts.Items.Clear();
-            foreach (DataRow rowCustomer in dtCustomers.Rows)
+            lbxAccounts.Items.Clear();  //clears accounts listbox
+            foreach (DataRow rowCustomer in dtCustomers.Rows)   //iterates through customer table
             {
                 if (lbxCustomer.SelectedItem.ToString() == rowCustomer["custid"].ToString() + ": " + rowCustomer["title"].ToString() + " " + rowCustomer["firstname"].ToString() + " " + rowCustomer["lastname"])
+                    //line 133, checks if customer listbox value equals concatenated customer table values of current row
                 {
-                    foreach (DataRow rowAccount in dtAccounts.Rows)
+                    foreach (DataRow rowAccount in dtAccounts.Rows)     //iterates through accounts table
                     {
-                        if(rowCustomer["custid"].ToString() == rowAccount["custid"].ToString())
+                        if(rowCustomer["custid"].ToString() == rowAccount["custid"].ToString())     //checks to see if current row in customer table custid equals current row in account table custid
                         {
-                            foreach(DataRow rowProduct in dtProducts.Rows)
+                            foreach(DataRow rowProduct in dtProducts.Rows)      //iterates through product table
                             {
-                                if(rowProduct["prodid"].ToString() == rowAccount["prodid"].ToString())
+                                if(rowProduct["prodid"].ToString() == rowAccount["prodid"].ToString())      //checks to see if current row in product table prodid equals current row in account table prodid
                                 {
-                                    lbxAccounts.Items.Add("Account ID: " + rowAccount["accid"].ToString() + " - " + rowProduct["isaname"].ToString());
+                                    lbxAccounts.Items.Add("Account ID: " + rowAccount["accid"].ToString() + " - " + rowProduct["isaname"].ToString());      //if above is true, adds listbox item based
+                                                                                                                                                            //on account and product table values
                                 }
                             }
                         }
@@ -150,18 +153,21 @@ namespace OutlawHessDB
 
         private void lbxAccounts_Click(object sender, EventArgs e)
         {
-            lbxTransactions.Items.Clear();
-            foreach (DataRow rowProduct in dtProducts.Rows)
+            lbxTransactions.Items.Clear();      //clears transactions listbox
+            foreach (DataRow rowProduct in dtProducts.Rows)     //iterates through product table
             {
-                foreach (DataRow rowAccount in dtAccounts.Rows)
+                foreach (DataRow rowAccount in dtAccounts.Rows)     //iterates through account table
                 {
-                    if(lbxAccounts.SelectedItem.ToString() == "Account ID: " + rowAccount["accid"].ToString() + " - " + rowProduct["isaname"].ToString())
+                    if(lbxAccounts.SelectedItem.ToString() == "Account ID: " + rowAccount["accid"].ToString() + " - " + rowProduct["isaname"].ToString())   //checks if item selected in account listbox is equal
+                                                                                                                                                            //to details from account and product tables
                     {
-                        foreach (DataRow rowTransaction in dtTransactions.Rows)
+                        foreach (DataRow rowTransaction in dtTransactions.Rows)     //if above is true, iterates through transaction table
                         {
-                            if (rowAccount["accid"].ToString() == rowTransaction["accid"].ToString())
+                            if (rowAccount["accid"].ToString() == rowTransaction["accid"].ToString())       //check to see if accid of current row in account table is equal to accid of current row
+                                                                                                            //in transaction table
                             {
                                 lbxTransactions.Items.Add(rowTransaction["action"].ToString() + ": " + rowTransaction["event"].ToString() + " - Amount: £" + rowTransaction["amnt"].ToString());
+                                //line 169 adds item to listbox based on transaction table values
                             }
                         }
                     }
@@ -171,10 +177,10 @@ namespace OutlawHessDB
 
         private void btnCustTransactions_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Dispose();     //disposes this form
         }
 
-        private void btnMainMenu_Click(object sender, EventArgs e)
+        private void btnMainMenu_Click(object sender, EventArgs e)      //disposes this form and active transaction form when main menu button is clicked
         {
             this.Dispose();
             Transactions.ActiveForm.Dispose();

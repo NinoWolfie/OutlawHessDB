@@ -66,7 +66,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }   //see line 41 for additional details
         }
 
         private void btnPasswordResetSubmit_Click(object sender, EventArgs e)
