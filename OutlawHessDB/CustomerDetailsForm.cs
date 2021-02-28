@@ -33,7 +33,7 @@ namespace OutlawHessDB
             }
         }
 
-        AllCustomers allCustomers;      //allows AllCustomers to be called when closing the form
+        AllCustomers allCustomers = new AllCustomers();      //allows AllCustomers to be called when closing the form
 
         private void CustomerDetails_Load(object sender, EventArgs e)       //sets values of textboxes based on pulled loadCommand
         {
