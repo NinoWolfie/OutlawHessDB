@@ -22,15 +22,16 @@ namespace OutlawHessDB
         string ex;
         SQLiteConnection conn;
 
-        public UserDetailsForm(string loadFunction, string[] userArray) //pulls data from management.cs
+        public UserDetailsForm(string loadFunction, string[] userArrayPulled) //pulls data from management.cs
         {
             InitializeComponent();
             loadCommand = loadFunction;
+            userArray = userArrayPulled;
         }
 
         private void UserDetailsForm_Load(object sender, EventArgs e)
         {
-            if (loadCommand == "add")       //lines 33 - 50 set the value of the textbox boxes 
+            if (loadCommand == "add")       //lines 34 - 51 set the value of the textbox boxes 
             {
                 txtUserID.Text = "TBA";
                 txtUserFirstName.Text = null;
@@ -50,7 +51,7 @@ namespace OutlawHessDB
                 txtUserRole.Text = userArray[5];
             }
 
-            dbConnection.dbconnStatus(conn);        //lines 53 - 71, see lines 33 - 62 of login.cs. Try catch statement only validates the connection, does not pull data from database
+            dbConnection.dbconnStatus(conn);        //lines 54 - 72, see lines 33 - 62 of login.cs. Try catch statement only validates the connection, does not pull data from database
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -81,7 +82,7 @@ namespace OutlawHessDB
                     MessageBox.Show("Please complete all fields");      //message box shows if above is true and ends task
                     return;
                 }
-                using (SQLiteCommand cmd = conn.CreateCommand())    //lines 84 - 104 passes data to the database, shows a message box, shows management form, and closes this form
+                using (SQLiteCommand cmd = conn.CreateCommand())    //lines 85 - 105 passes data to the database, shows a message box, shows management form, and closes this form
                 {
                     cmd.CommandText = @"Insert into users(firstname, lastname, password, dob, role) values (@firstName, @lastName, @password, @dob, @role)";
                     cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
@@ -117,12 +118,13 @@ namespace OutlawHessDB
                 }
                 using (SQLiteCommand cmd = conn.CreateCommand())    //Lines 118 - 138 passes data to database for updating details, shows a message box, shows management form, and closes this form
                 {
-                    cmd.CommandText = @"UPDATE customer Set firstname = @firstName, lastname = @lastName, password = @password, dob = @dob, role = @role Where userid = @userid";
+                    cmd.CommandText = @"UPDATE users Set firstname = @firstName, lastname = @lastName, password = @password, dob = @dob, role = @role Where userid = @userid";
                     cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
                     cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
                     cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
                     cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
                     cmd.Parameters.AddWithValue("role", txtUserRole.Text);
+                    cmd.Parameters.AddWithValue("userid", txtUserID.Text);
 
                     conn.Open();        //opens Connection to database
                     cmd.ExecuteNonQuery();      //executes query

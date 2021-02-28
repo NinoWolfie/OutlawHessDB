@@ -81,11 +81,12 @@ namespace OutlawHessDB
                 {
                     if (row["userID"].ToString() == txtEmployeeID.Text && row["firstname"].ToString() == txtFirstName.Text && row["lastname"].ToString() == txtLastName.Text && row["dob"].ToString() == txtDOB.Text)
                     {
-                        lblDetails.Text = "Your details are correct";       //if line 82 statement is true, displays text in label and shows several hidden items and enables a button
+                        lblDetails.Text = "Your details are correct";       //if line 82 statement is true, displays text in label and shows several hidden items and enables a button and breaks loop
                         txtNewPassword.Visible = true;
                         btnConfirmPassword.Visible = true;
                         lblNewPassword.Visible = true;
                         btnConfirmPassword.Enabled = true;
+                        break;
                     }
                     else
                     {

@@ -107,7 +107,9 @@ namespace OutlawHessDB
                     }
                 }
             }
-            this.Refresh();     //refreshes this form with updated table
+            Form form = new Management();      //refresh() not working, using new form load
+            form.Show();
+            this.Dispose();
         }
 
         private void btnMainMenu_Click(object sender, EventArgs e)      //closes this form if clicked
