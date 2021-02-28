@@ -78,7 +78,7 @@ namespace OutlawHessDB
             loadCommand = "update";     //sets loadCommand value
             foreach (DataRow row in dtUsers.Rows)   //runs through each row in users table in database
             {
-                if (dgvUsers.SelectedCells[0].Value.ToString() == row["custid"].ToString())     //makes sure the userid of the selected row is equal to the userid of the current row in the foreach loop
+                if (dgvUsers.SelectedCells[0].Value.ToString() == row["userid"].ToString())     //makes sure the userid of the selected row is equal to the userid of the current row in the foreach loop
                 {
                     for (int i = 0; i < 6; i++)     //populates an array to be passed to UserDetailsForm, the number of indexes is equal to the number of columns in the users table
                     {

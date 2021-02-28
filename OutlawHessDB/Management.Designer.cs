@@ -43,6 +43,7 @@
             this.dgvUsers.Location = new System.Drawing.Point(13, 13);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.ReadOnly = true;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsers.Size = new System.Drawing.Size(656, 425);
             this.dgvUsers.TabIndex = 0;

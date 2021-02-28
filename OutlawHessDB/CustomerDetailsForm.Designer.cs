@@ -70,6 +70,7 @@
             this.btnCancelCustDetails.TabIndex = 1;
             this.btnCancelCustDetails.Text = "Cancel";
             this.btnCancelCustDetails.UseVisualStyleBackColor = true;
+            this.btnCancelCustDetails.Click += new System.EventHandler(this.btnCancelCustDetails_Click);
             // 
             // label1
             // 

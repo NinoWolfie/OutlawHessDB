@@ -140,5 +140,10 @@ namespace OutlawHessDB
                 }
             }
         }
+
+        private void btnCancelCustDetails_Click(object sender, EventArgs e)
+        {
+            this.Dispose();     //disposes this form
+        }
     }
 }
