@@ -27,7 +27,8 @@ namespace OutlawHessDB
 
         private void PasswordHelp_Load(object sender, EventArgs e)
         {
-            //lines 31 - 39 set the starting state of the respective controls
+            //lines 31 - 40 set the starting state of the respective controls
+            txtEmployeeID = null;
             txtFirstName.Text = null;
             txtLastName.Text = null;
             txtDOB.Text = null;
@@ -38,7 +39,7 @@ namespace OutlawHessDB
             lblNewPassword.Visible = false;
             btnConfirmPassword.Enabled = false;
 
-            dbConnection.dbconnStatus(conn);        //Lines 41 - 70, see login.cs lines 33 - 62
+            dbConnection.dbconnStatus(conn);        //Lines 42 - 71, see login.cs lines 33 - 62
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -66,7 +67,7 @@ namespace OutlawHessDB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }   //see line 41 for additional details
+            }   //see line 42 for additional details
         }
 
         private void btnPasswordResetSubmit_Click(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace OutlawHessDB
                 {
                     if (row["userID"].ToString() == txtEmployeeID.Text && row["firstname"].ToString() == txtFirstName.Text && row["lastname"].ToString() == txtLastName.Text && row["dob"].ToString() == txtDOB.Text)
                     {
-                        lblDetails.Text = "Your details are correct";       //if line 82 statement is true, displays text in label and shows several hidden items and enables a button and breaks loop
+                        lblDetails.Text = "Your details are correct";       //if line 83 statement is true, displays text in label and shows several hidden items and enables a button and breaks loop
                         txtNewPassword.Visible = true;
                         btnConfirmPassword.Visible = true;
                         lblNewPassword.Visible = true;
@@ -90,7 +91,8 @@ namespace OutlawHessDB
                     }
                     else
                     {
-                        lblDetails.Text = "Your details are incorrect, try again or contact your supervisor";   //if line 82 statement false label displays text and text boxes clear
+                        lblDetails.Text = "Your details are incorrect, try again or contact your supervisor";   //if line 83 statement false label displays text and text boxes clear
+                        txtEmployeeID.Text = null;
                         txtFirstName.Text = null;
                         txtLastName.Text = null;
                         txtDOB.Text = null;
