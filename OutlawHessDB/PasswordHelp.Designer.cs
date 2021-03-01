@@ -56,14 +56,14 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(154, 81);
+            this.txtFirstName.Location = new System.Drawing.Point(272, 81);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(100, 20);
             this.txtFirstName.TabIndex = 1;
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(154, 117);
+            this.txtLastName.Location = new System.Drawing.Point(272, 117);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(100, 20);
             this.txtLastName.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             // txtDOB
             // 
-            this.txtDOB.Location = new System.Drawing.Point(154, 153);
+            this.txtDOB.Location = new System.Drawing.Point(272, 153);
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.Size = new System.Drawing.Size(100, 20);
             this.txtDOB.TabIndex = 13;
@@ -95,7 +95,7 @@
             // 
             // btnPasswordResetSubmit
             // 
-            this.btnPasswordResetSubmit.Location = new System.Drawing.Point(136, 189);
+            this.btnPasswordResetSubmit.Location = new System.Drawing.Point(168, 192);
             this.btnPasswordResetSubmit.Name = "btnPasswordResetSubmit";
             this.btnPasswordResetSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnPasswordResetSubmit.TabIndex = 6;
@@ -114,7 +114,7 @@
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(124, 275);
+            this.txtNewPassword.Location = new System.Drawing.Point(156, 275);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(100, 20);
             this.txtNewPassword.TabIndex = 9;
@@ -122,7 +122,7 @@
             // 
             // btnConfirmPassword
             // 
-            this.btnConfirmPassword.Location = new System.Drawing.Point(136, 310);
+            this.btnConfirmPassword.Location = new System.Drawing.Point(168, 316);
             this.btnConfirmPassword.Name = "btnConfirmPassword";
             this.btnConfirmPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnConfirmPassword.Size = new System.Drawing.Size(75, 23);
@@ -158,7 +158,7 @@
             this.tssImageConnStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tssImageConnStatus.Dock = System.Windows.Forms.DockStyle.None;
             this.tssImageConnStatus.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tssImageConnStatus.Location = new System.Drawing.Point(236, 316);
+            this.tssImageConnStatus.Location = new System.Drawing.Point(336, 316);
             this.tssImageConnStatus.Name = "tssImageConnStatus";
             this.tssImageConnStatus.Size = new System.Drawing.Size(39, 36);
             this.tssImageConnStatus.Stretch = true;
@@ -167,7 +167,7 @@
             // 
             // txtEmployeeID
             // 
-            this.txtEmployeeID.Location = new System.Drawing.Point(154, 44);
+            this.txtEmployeeID.Location = new System.Drawing.Point(272, 44);
             this.txtEmployeeID.Name = "txtEmployeeID";
             this.txtEmployeeID.Size = new System.Drawing.Size(100, 20);
             this.txtEmployeeID.TabIndex = 16;
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 361);
+            this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.txtEmployeeID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tssImageConnStatus);
