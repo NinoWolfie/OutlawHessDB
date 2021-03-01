@@ -93,23 +93,31 @@ namespace OutlawHessDB
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            foreach (DataRow row in dtUsers.Rows)       //runs through each row in users table in database
+            DialogResult = MessageBox.Show("Are you sure you wish to delete the selected query?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
+            if (DialogResult == DialogResult.Yes)
             {
-                if (dgvUsers.SelectedCells[0].Value.ToString() == row["userid"].ToString())     //makes sure the userid of the selected row is equal to the userid of the current row in the foreach loop
+                foreach (DataRow row in dtUsers.Rows)       //if above statement is true, runs through each row in users table in database
                 {
-                    using (SQLiteCommand cmd = conn.CreateCommand())        //runs command to delete a user by opening a connection, running the query and closing the connection
+                    if (dgvUsers.SelectedCells[0].Value.ToString() == row["userid"].ToString())     //makes sure the userid of the selected row is equal to the userid of the current row in the foreach loop
                     {
-                        cmd.CommandText = @"DELETE FROM users Where userID = @userID";      //sets SQL Query
-                        cmd.Parameters.AddWithValue("userID", row["userID"].ToString());        //Defines values form SQL query
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        conn.Close();
+                        using (SQLiteCommand cmd = conn.CreateCommand())        //runs command to delete a user by opening a connection, running the query and closing the connection
+                        {
+                            cmd.CommandText = @"DELETE FROM users Where userID = @userID";      //sets SQL Query
+                            cmd.Parameters.AddWithValue("userID", row["userID"].ToString());        //Defines values form SQL query
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                        }
                     }
                 }
+                Form form = new Management();      //refresh() not working, using new form load
+                form.Show();
+                this.Dispose();
             }
-            Form form = new Management();      //refresh() not working, using new form load
-            form.Show();
-            this.Dispose();
+            else     //if the statement is false, return without deleting
+            {
+                return;
+            }
         }
 
         private void btnMainMenu_Click(object sender, EventArgs e)      //closes this form if clicked

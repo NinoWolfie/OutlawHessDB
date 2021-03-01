@@ -96,23 +96,31 @@ namespace OutlawHessDB
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            foreach (DataRow row in dtCustomer.Rows)        //loops through each row of table
+            DialogResult = MessageBox.Show("Are you sure you wish to delete the selected query?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
+            if(DialogResult == DialogResult.Yes)
             {
-                if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())      //check to see if selected dgvCustomer userid is the same as the table userid
+                foreach (DataRow row in dtCustomer.Rows)        //if statement above is true, loops through each row of table
                 {
-                    using (SQLiteCommand cmd = conn.CreateCommand())        //if above is true, sets SQL query based on custid of table row in loop, opens connection, runs the query, closes the connection
+                    if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())      //check to see if selected dgvCustomer userid is the same as the table userid
                     {
-                        cmd.CommandText = @"DELETE FROM customer Where custid = @custID";
-                        cmd.Parameters.AddWithValue("custID", row["custid"].ToString());
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        conn.Close();
+                        using (SQLiteCommand cmd = conn.CreateCommand())        //if above is true, sets SQL query based on custid of table row in loop, opens connection, runs the query, closes the connection
+                        {
+                            cmd.CommandText = @"DELETE FROM customer Where custid = @custID";
+                            cmd.Parameters.AddWithValue("custID", row["custid"].ToString());
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                        }
                     }
                 }
+                Form form = new AllCustomers();      //refresh() not working, using new form load
+                form.Show();
+                this.Dispose();
             }
-            Form form = new AllCustomers();      //refresh() not working, using new form load
-            form.Show();
-            this.Dispose();
+            else     //if the statement is false, return without deleting
+            {
+                return;
+            }
         }
 
         private void btnCustAccounts_Click(object sender, EventArgs e)
@@ -124,7 +132,7 @@ namespace OutlawHessDB
                     custID = row["custid"].ToString();      //if true, sets custID to custid of row
                 }
             }
-            Form form = new CustomerAccounts(custID);       //lines 125 - 127, opens new CustomerAccounts form, passes custID through to new form and disposes this form
+            Form form = new CustomerAccounts(custID);       //lines 135 - 137, opens new CustomerAccounts form, passes custID through to new form and disposes this form
             form.Show();
             this.Dispose();
         }
