@@ -63,19 +63,18 @@ namespace OutlawHessDB
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            isLoggedIn = false;     //sets isLoggedin to false for default value
-            if (string.IsNullOrWhiteSpace(txtEmployeeNumber.Text) == false)     //lines 67-69, validation of the textbox for employee name and password
+            if (string.IsNullOrWhiteSpace(txtEmployeeNumber.Text) == false)     //lines 66-68, validation of the textbox for employee name and password
             {
                 if(string.IsNullOrWhiteSpace(txtPassword.Text) == false)
                 {
                     foreach (DataRow row in dtLogin.Rows)       //runs through each row of the selected table
                     {
-                        if (row["userID"].ToString() == txtEmployeeNumber.Text)     //lines 73-76, checks the employee number, stores that, then checks the password relating to that id
+                        if (row["userID"].ToString() == txtEmployeeNumber.Text)     //lines 73-75, checks the employee number, stores that, then checks the password relating to that id
                         {
                             userID = int.Parse(txtEmployeeNumber.Text);
                             if (row["password"].ToString() == txtPassword.Text)
                             {
-                                Form NewForm = new MainMenu(userID);        //if both userid and password are correct, lines 78 - 84 opens main menu, hides login and clears textboxes and breaks for each loop
+                                Form NewForm = new MainMenu(userID);        //if both userid and password are correct, lines 77 - 83 opens main menu, hides login and clears textboxes and breaks for each loop
                                 NewForm.Show();
                                 this.Hide();
                                 txtEmployeeNumber.Text = null;
