@@ -28,7 +28,7 @@ namespace OutlawHessDB
         private void PasswordHelp_Load(object sender, EventArgs e)
         {
             //lines 31 - 40 set the starting state of the respective controls
-            txtEmployeeID = null;
+            txtEmployeeID.Text = null;
             txtFirstName.Text = null;
             txtLastName.Text = null;
             txtDOB.Text = null;
@@ -105,7 +105,7 @@ namespace OutlawHessDB
 
         private void btnConfirmPassword_Click(object sender, EventArgs e)
         {
-            using(SQLiteCommand cmd = conn.CreateCommand())     //When button click event occurs, sets variables for SQL command and runs the SQL code to update the specific database table
+            using (SQLiteCommand cmd = conn.CreateCommand())     //When button click event occurs, sets variables for SQL command and runs the SQL code to update the specific database table
             {
                 cmd.CommandText = @"UPDATE users Set password = @newPassword Where userID = @employeeID";
                 cmd.Parameters.AddWithValue("newPassword", txtNewPassword.Text);
@@ -117,7 +117,7 @@ namespace OutlawHessDB
             }
 
             DialogResult = MessageBox.Show("Your password has been updated", "Password Updated", MessageBoxButtons.OK);     //when SQL command has been run, message box appears confirming this
-            if(DialogResult == DialogResult.OK)     //clicking dialog button shows login form and disposes this form
+            if (DialogResult == DialogResult.OK)     //clicking dialog button shows login form and disposes this form
             {
                 Form form = new Login();
                 form.Show();

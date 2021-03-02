@@ -41,8 +41,8 @@
             this.lblNewPassword = new System.Windows.Forms.Label();
             this.lblDetails = new System.Windows.Forms.Label();
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
-            this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtEmployeeID = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -165,13 +165,6 @@
             this.tssImageConnStatus.TabIndex = 14;
             this.tssImageConnStatus.Text = "toolStrip1";
             // 
-            // txtEmployeeID
-            // 
-            this.txtEmployeeID.Location = new System.Drawing.Point(272, 44);
-            this.txtEmployeeID.Name = "txtEmployeeID";
-            this.txtEmployeeID.Size = new System.Drawing.Size(100, 20);
-            this.txtEmployeeID.TabIndex = 16;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -180,6 +173,13 @@
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 15;
             this.label5.Text = "Employee ID";
+            // 
+            // txtEmployeeID
+            // 
+            this.txtEmployeeID.Location = new System.Drawing.Point(272, 44);
+            this.txtEmployeeID.Name = "txtEmployeeID";
+            this.txtEmployeeID.Size = new System.Drawing.Size(100, 20);
+            this.txtEmployeeID.TabIndex = 16;
             // 
             // PasswordHelp
             // 
@@ -224,7 +224,7 @@
         private System.Windows.Forms.Label lblNewPassword;
         private System.Windows.Forms.Label lblDetails;
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
-        private System.Windows.Forms.TextBox txtEmployeeID;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtEmployeeID;
     }
 }
