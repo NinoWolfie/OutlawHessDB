@@ -20,6 +20,7 @@ namespace OutlawHessDB
         dbConnection dbConnection = new dbConnection();
         string ex;
         SQLiteConnection conn;
+        AllCustomers allCustomers = new AllCustomers();      //allows AllCustomers to be called when closing the form
 
         public CustomerDetailsForm(string loadFunction, string[] customerArray)
         {
@@ -32,8 +33,6 @@ namespace OutlawHessDB
                 count++;
             }
         }
-
-        AllCustomers allCustomers = new AllCustomers();      //allows AllCustomers to be called when closing the form
 
         private void CustomerDetails_Load(object sender, EventArgs e)       //sets values of textboxes based on pulled loadCommand
         {
@@ -62,7 +61,7 @@ namespace OutlawHessDB
                 txtCustAllowance.Text = custArray[8];
             }
 
-            dbConnection.dbconnStatus(conn);        //lines 65 - 83, see lines 33 - 62 of login.cs. Try catch statement only validates the connection, does not pull data from database
+            dbConnection.dbconnStatus(conn);        //lines 64 - 82, see lines 33 - 62 of login.cs. Try catch statement only validates the connection, does not pull data from database
             if (dbConnection.connStatus == true)
             {
                 tssImageConnStatus.BackgroundImage = Properties.Resources.grn;
@@ -87,7 +86,7 @@ namespace OutlawHessDB
         {
             if (loadCommand == "add")
             {
-                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 88 is true, runs command to add a customer by opening a connection, running the query and closing the connection
+                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 87 is true, runs command to add a customer by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"Insert into customer(title, firstname, lastname, dob, nicode, email, password, allowance) values (@title, @firstName, @lastName, @dob, @niCode, @email, @password, @allowance)";
                     cmd.Parameters.AddWithValue("title", txtCustTitle.Text);
@@ -113,7 +112,7 @@ namespace OutlawHessDB
             }
             else if (loadCommand == "update")
             {
-                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 114 is true, runs command to updates a customer by opening a connection, running the query and closing the connection
+                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 113 is true, runs command to updates a customer by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"UPDATE customer Set title = @title, firstname = @firstName, lastname = @lastName, dob = @dob,
                     nicode = @niCode, email = @email, password = @password, allowance = @allowance Where custid = @custID";

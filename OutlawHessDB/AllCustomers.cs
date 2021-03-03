@@ -106,7 +106,7 @@ namespace OutlawHessDB
                 MessageBox.Show("Please select a customer");        //if above statement is true, shows message box and end function execcution. Row is usually autoselected from the beginning but this is just a precaution
                 return;
             }
-            DialogResult = MessageBox.Show("Are you sure you wish to delete the selected query?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
+            DialogResult = MessageBox.Show("Are you sure you wish to delete the selected customer?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
             if(DialogResult == DialogResult.Yes)
             {
                 foreach (DataRow row in dtCustomer.Rows)        //if statement above is true, loops through each row of table

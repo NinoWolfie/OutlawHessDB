@@ -76,6 +76,11 @@ namespace OutlawHessDB
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             loadCommand = "update";     //sets loadCommand value
+            if (dgvUsers.SelectedRows.Count == 0)        //validation that there is at least one row selected
+            {
+                MessageBox.Show("Please select a customer");        //if above statement is true, shows message box and end function execcution. Row is usually autoselected from the beginning but this is just a precaution
+                return;
+            }
             foreach (DataRow row in dtUsers.Rows)   //runs through each row in users table in database
             {
                 if (dgvUsers.SelectedCells[0].Value.ToString() == row["userid"].ToString())     //makes sure the userid of the selected row is equal to the userid of the current row in the foreach loop
@@ -86,14 +91,14 @@ namespace OutlawHessDB
                     }
                 }
             }
-            Form form = new UserDetailsForm(loadCommand, userArray);        //lines 91 - 93 opens UserDetailsForm, passes data through, and closes this form
+            Form form = new UserDetailsForm(loadCommand, userArray);        //lines 94 - 96 opens UserDetailsForm, passes data through, and closes this form
             form.Show();
             this.Dispose();
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            DialogResult = MessageBox.Show("Are you sure you wish to delete the selected query?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
+            DialogResult = MessageBox.Show("Are you sure you wish to delete the selected user?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
             if (DialogResult == DialogResult.Yes)
             {
                 foreach (DataRow row in dtUsers.Rows)       //if above statement is true, runs through each row in users table in database
