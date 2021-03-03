@@ -79,6 +79,11 @@ namespace OutlawHessDB
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
             loadCommand = "update";     //sets loadCommand value
+            if (dgvCustomer.SelectedRows.Count == 0)        //validation that there is at least one row selected
+            {
+                MessageBox.Show("Please select a customer");        //if above statement is true, shows message box and end function execcution. Row is usually autoselected from the beginning but this is just a precaution
+                return;
+            }
             foreach (DataRow row in dtCustomer.Rows)        //runs through each row in table
             {
                 if (dgvCustomer.SelectedCells[0].Value.ToString() == row["custid"].ToString())      //makes sure the custid of the selected row is equal to the custid of the current row in the foreach loop
@@ -89,13 +94,18 @@ namespace OutlawHessDB
                     }
                 }
             }
-            Form form = new CustomerDetailsForm(loadCommand, customerArray);        //lines 92 - 94 loads new form, passes data through to the form and closes this form
+            Form form = new CustomerDetailsForm(loadCommand, customerArray);        //lines 97 - 99 loads new form, passes data through to the form and closes this form
             form.Show();
             this.Dispose();
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
+            if (dgvCustomer.SelectedRows.Count == 0)        //validation that there is at least one row selected
+            {
+                MessageBox.Show("Please select a customer");        //if above statement is true, shows message box and end function execcution. Row is usually autoselected from the beginning but this is just a precaution
+                return;
+            }
             DialogResult = MessageBox.Show("Are you sure you wish to delete the selected query?", "Delete?", MessageBoxButtons.YesNo);  //Dialogresult function to allow for check before deleting selected record
             if(DialogResult == DialogResult.Yes)
             {
