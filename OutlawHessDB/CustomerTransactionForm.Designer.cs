@@ -1,6 +1,6 @@
 ﻿namespace OutlawHessDB
 {
-    partial class CustomerTransactionFrom
+    partial class CustomerTransactionForm
     {
         /// <summary>
         /// Required designer variable.

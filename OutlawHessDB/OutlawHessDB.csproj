@@ -96,11 +96,11 @@
     <Compile Include="CustomerAccounts.Designer.cs">
       <DependentUpon>CustomerAccounts.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerTransactionFrom.cs">
+    <Compile Include="CustomerTransactionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerTransactionFrom.Designer.cs">
-      <DependentUpon>CustomerTransactionFrom.cs</DependentUpon>
+    <Compile Include="CustomerTransactionForm.Designer.cs">
+      <DependentUpon>CustomerTransactionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="dbConnection.cs" />
     <Compile Include="AllCustomers.cs">
@@ -168,8 +168,8 @@
     <EmbeddedResource Include="CustomerAccounts.resx">
       <DependentUpon>CustomerAccounts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerTransactionFrom.resx">
-      <DependentUpon>CustomerTransactionFrom.cs</DependentUpon>
+    <EmbeddedResource Include="CustomerTransactionForm.resx">
+      <DependentUpon>CustomerTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

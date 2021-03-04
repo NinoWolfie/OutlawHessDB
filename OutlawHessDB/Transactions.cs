@@ -65,7 +65,7 @@ namespace OutlawHessDB
 
         private void btnCustTransactions_Click(object sender, EventArgs e)      //clicking this opens CustomerTransactionFrom and shows it
         {
-            Form form = new CustomerTransactionFrom();
+            Form form = new CustomerTransactionForm();
             form.Show();
         }
 

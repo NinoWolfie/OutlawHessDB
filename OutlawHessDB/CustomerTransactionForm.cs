@@ -11,9 +11,9 @@ using System.Data.SQLite;
 
 namespace OutlawHessDB
 {
-    public partial class CustomerTransactionFrom : Form
+    public partial class CustomerTransactionForm : Form
     {
-        public CustomerTransactionFrom()
+        public CustomerTransactionForm()
         {
             InitializeComponent();
         }
