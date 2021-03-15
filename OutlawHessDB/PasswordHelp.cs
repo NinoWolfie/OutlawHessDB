@@ -31,7 +31,7 @@ namespace OutlawHessDB
             txtEmployeeID.Text = null;
             txtFirstName.Text = null;
             txtLastName.Text = null;
-            txtDOB.Text = null;
+            mtxtDOB.Text = null;
             lblDetails.Text = null;
             lblDetails.Visible = false;
             txtNewPassword.Visible = false;
@@ -72,31 +72,35 @@ namespace OutlawHessDB
 
         private void btnPasswordResetSubmit_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtEmployeeID.Text) || string.IsNullOrWhiteSpace(txtFirstName.Text) || string.IsNullOrWhiteSpace(txtLastName.Text) || string.IsNullOrWhiteSpace(txtDOB.Text))
+            if(string.IsNullOrWhiteSpace(txtEmployeeID.Text) || string.IsNullOrWhiteSpace(txtFirstName.Text) || string.IsNullOrWhiteSpace(txtLastName.Text) || string.IsNullOrWhiteSpace(mtxtDOB.Text))
             {
                 lblDetails.Text = "Please fill out all the boxes with the correct details";     //if above statement is true on any account, message box appears
+                return;
             }
-            else
+            if (DateTime.TryParse(mtxtDOB.Text, out DateTime format) != true)       //validates that the date is in the right format and is an acceptable date
             {
-                foreach (DataRow row in dtPasswordHelp.Rows)        //if the statement is found to be false on all counts, foreach statement loops through datatable
+                MessageBox.Show("Please enter a date in the correct format (DD/MM/YYYY)");
+                return;
+            }
+
+            foreach (DataRow row in dtPasswordHelp.Rows)        //if the statement is found to be false on all counts, foreach statement loops through datatable
+            {
+                if (row["userID"].ToString() == txtEmployeeID.Text && row["firstname"].ToString() == txtFirstName.Text && row["lastname"].ToString() == txtLastName.Text && row["dob"].ToString() == mtxtDOB.Text)
                 {
-                    if (row["userID"].ToString() == txtEmployeeID.Text && row["firstname"].ToString() == txtFirstName.Text && row["lastname"].ToString() == txtLastName.Text && row["dob"].ToString() == txtDOB.Text)
-                    {
-                        lblDetails.Text = "Your details are correct";       //if line 83 statement is true, displays text in label and shows several hidden items and enables a button and breaks loop
-                        txtNewPassword.Visible = true;
-                        btnConfirmPassword.Visible = true;
-                        lblNewPassword.Visible = true;
-                        btnConfirmPassword.Enabled = true;
-                        break;
-                    }
-                    else
-                    {
-                        lblDetails.Text = "Your details are incorrect, try again or contact your supervisor";   //if line 83 statement false label displays text and text boxes clear
-                        txtEmployeeID.Text = null;
-                        txtFirstName.Text = null;
-                        txtLastName.Text = null;
-                        txtDOB.Text = null;
-                    }
+                    lblDetails.Text = "Your details are correct";       //if line 88 statement is true, displays text in label and shows several hidden items and enables a button and breaks loop
+                    txtNewPassword.Visible = true;
+                    btnConfirmPassword.Visible = true;
+                    lblNewPassword.Visible = true;
+                    btnConfirmPassword.Enabled = true;
+                    break;
+                }
+                else
+                {
+                    lblDetails.Text = "Your details are incorrect, try again or contact your supervisor";   //if line 88 statement false label displays text and text boxes clear
+                    txtEmployeeID.Text = null;
+                    txtFirstName.Text = null;
+                    txtLastName.Text = null;
+                    mtxtDOB.Text = null;
                 }
             }
 

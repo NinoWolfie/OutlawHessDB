@@ -32,7 +32,6 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDOB = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnPasswordResetSubmit = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
             this.label5 = new System.Windows.Forms.Label();
             this.txtEmployeeID = new System.Windows.Forms.TextBox();
+            this.mtxtDOB = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -76,13 +76,6 @@
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Last Name";
-            // 
-            // txtDOB
-            // 
-            this.txtDOB.Location = new System.Drawing.Point(272, 153);
-            this.txtDOB.Name = "txtDOB";
-            this.txtDOB.Size = new System.Drawing.Size(100, 20);
-            this.txtDOB.TabIndex = 13;
             // 
             // label3
             // 
@@ -181,12 +174,22 @@
             this.txtEmployeeID.Size = new System.Drawing.Size(100, 20);
             this.txtEmployeeID.TabIndex = 16;
             // 
+            // mtxtDOB
+            // 
+            this.mtxtDOB.Location = new System.Drawing.Point(272, 153);
+            this.mtxtDOB.Mask = "00/00/0000";
+            this.mtxtDOB.Name = "mtxtDOB";
+            this.mtxtDOB.Size = new System.Drawing.Size(100, 20);
+            this.mtxtDOB.TabIndex = 17;
+            this.mtxtDOB.ValidatingType = typeof(System.DateTime);
+            // 
             // PasswordHelp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(384, 361);
+            this.Controls.Add(this.mtxtDOB);
             this.Controls.Add(this.txtEmployeeID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tssImageConnStatus);
@@ -196,7 +199,6 @@
             this.Controls.Add(this.txtNewPassword);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnPasswordResetSubmit);
-            this.Controls.Add(this.txtDOB);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.label2);
@@ -216,7 +218,6 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtDOB;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPasswordResetSubmit;
         private System.Windows.Forms.Label label4;
@@ -227,5 +228,6 @@
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEmployeeID;
+        private System.Windows.Forms.MaskedTextBox mtxtDOB;
     }
 }

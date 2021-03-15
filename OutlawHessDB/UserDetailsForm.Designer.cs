@@ -45,7 +45,7 @@
             this.txtUserID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelCustDetails = new System.Windows.Forms.Button();
-            this.btnSubmitCustDetails = new System.Windows.Forms.Button();
+            this.btnSubmitUserDetails = new System.Windows.Forms.Button();
             this.mtxtUserDOB = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
@@ -199,15 +199,15 @@
             this.btnCancelCustDetails.UseVisualStyleBackColor = true;
             this.btnCancelCustDetails.Click += new System.EventHandler(this.btnCancelCustDetails_Click);
             // 
-            // btnSubmitCustDetails
+            // btnSubmitUserDetails
             // 
-            this.btnSubmitCustDetails.Location = new System.Drawing.Point(64, 300);
-            this.btnSubmitCustDetails.Name = "btnSubmitCustDetails";
-            this.btnSubmitCustDetails.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmitCustDetails.TabIndex = 24;
-            this.btnSubmitCustDetails.Text = "Submit";
-            this.btnSubmitCustDetails.UseVisualStyleBackColor = true;
-            this.btnSubmitCustDetails.Click += new System.EventHandler(this.btnSubmitCustDetails_Click);
+            this.btnSubmitUserDetails.Location = new System.Drawing.Point(64, 300);
+            this.btnSubmitUserDetails.Name = "btnSubmitUserDetails";
+            this.btnSubmitUserDetails.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmitUserDetails.TabIndex = 24;
+            this.btnSubmitUserDetails.Text = "Submit";
+            this.btnSubmitUserDetails.UseVisualStyleBackColor = true;
+            this.btnSubmitUserDetails.Click += new System.EventHandler(this.btnSubmitUserDetails_Click);
             // 
             // mtxtUserDOB
             // 
@@ -242,7 +242,7 @@
             this.Controls.Add(this.txtUserID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelCustDetails);
-            this.Controls.Add(this.btnSubmitCustDetails);
+            this.Controls.Add(this.btnSubmitUserDetails);
             this.Name = "UserDetailsForm";
             this.Text = "UserDetailsForm";
             this.Load += new System.EventHandler(this.UserDetailsForm_Load);
@@ -270,7 +270,7 @@
         private System.Windows.Forms.TextBox txtUserID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelCustDetails;
-        private System.Windows.Forms.Button btnSubmitCustDetails;
+        private System.Windows.Forms.Button btnSubmitUserDetails;
         private System.Windows.Forms.MaskedTextBox mtxtUserDOB;
     }
 }

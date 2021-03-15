@@ -157,9 +157,9 @@
             this.lblUserID.AutoSize = true;
             this.lblUserID.Location = new System.Drawing.Point(13, 13);
             this.lblUserID.Name = "lblUserID";
-            this.lblUserID.Size = new System.Drawing.Size(35, 13);
+            this.lblUserID.Size = new System.Drawing.Size(50, 13);
             this.lblUserID.TabIndex = 13;
-            this.lblUserID.Text = "label7";
+            this.lblUserID.Text = "lblUserID";
             // 
             // label1
             // 

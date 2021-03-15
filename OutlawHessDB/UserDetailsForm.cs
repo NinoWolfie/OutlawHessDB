@@ -72,7 +72,7 @@ namespace OutlawHessDB
             }
         }
 
-        private void btnSubmitCustDetails_Click(object sender, EventArgs e)
+        private void btnSubmitUserDetails_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtUserFirstName.Text) || string.IsNullOrWhiteSpace(txtUserLastName.Text) || string.IsNullOrWhiteSpace(txtUserPassword.Text) || string.IsNullOrWhiteSpace(mtxtUserDOB.Text) ||
                 string.IsNullOrWhiteSpace(txtUserRole.Text))
