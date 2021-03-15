@@ -42,7 +42,7 @@ namespace OutlawHessDB
                 txtCustTitle.Text = null;
                 txtCustFirstName.Text = null;
                 txtCustLastName.Text = null;
-                txtCustDOB.Text = null;
+                mtxtCustDOB.Text = null;
                 txtCustNICode.Text = null;
                 txtCustEmailAddress.Text = null;
                 txtCustPassword.Text = null;
@@ -54,7 +54,7 @@ namespace OutlawHessDB
                 txtCustTitle.Text = custArray[1];
                 txtCustFirstName.Text = custArray[2];
                 txtCustLastName.Text = custArray[3];
-                txtCustDOB.Text = custArray[4];
+                mtxtCustDOB.Text = custArray[4];
                 txtCustNICode.Text = custArray[5];
                 txtCustEmailAddress.Text = custArray[6];
                 txtCustPassword.Text = custArray[7];
@@ -84,15 +84,32 @@ namespace OutlawHessDB
 
         private void btnSubmitCustDetails_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtCustTitle.Text) || string.IsNullOrWhiteSpace(txtCustFirstName.Text) || string.IsNullOrWhiteSpace(txtCustLastName.Text) || string.IsNullOrWhiteSpace(mtxtCustDOB.Text) ||
+                string.IsNullOrWhiteSpace(txtCustNICode.Text) || string.IsNullOrWhiteSpace(txtCustEmailAddress.Text) || string.IsNullOrWhiteSpace(txtCustPassword.Text) || string.IsNullOrWhiteSpace(txtCustAllowance.Text))
+                //lines 87 - 88 validates that there is data in the textboxes
+            {
+                MessageBox.Show("Please fill all the fields with correct information");
+                return;
+            }
+            if(DateTime.TryParse(mtxtCustDOB.Text, out DateTime format) != true)    //validates the masked textbox data is in the correct data format and is an acceptable data
+            {
+                MessageBox.Show("Please enter a date in the correct format (DD/MM/YYYY)");
+                return;
+            }
+            if(int.TryParse(txtCustAllowance.Text, out int result) == false)        //validates the allowance field in a number
+            {
+                MessageBox.Show("Please only use numbers in the 'Allowance' field");
+                return;
+            }
             if (loadCommand == "add")
             {
-                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 87 is true, runs command to add a customer by opening a connection, running the query and closing the connection
+                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 104 is true, runs command to add a customer by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"Insert into customer(title, firstname, lastname, dob, nicode, email, password, allowance) values (@title, @firstName, @lastName, @dob, @niCode, @email, @password, @allowance)";
                     cmd.Parameters.AddWithValue("title", txtCustTitle.Text);
                     cmd.Parameters.AddWithValue("firstName", txtCustFirstName.Text);
                     cmd.Parameters.AddWithValue("lastName", txtCustLastName.Text);
-                    cmd.Parameters.AddWithValue("dob", txtCustDOB.Text);
+                    cmd.Parameters.AddWithValue("dob", mtxtCustDOB.Text);
                     cmd.Parameters.AddWithValue("niCode", txtCustNICode.Text);
                     cmd.Parameters.AddWithValue("email", txtCustEmailAddress.Text);
                     cmd.Parameters.AddWithValue("password", txtCustPassword.Text);
@@ -112,14 +129,14 @@ namespace OutlawHessDB
             }
             else if (loadCommand == "update")
             {
-                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 113 is true, runs command to updates a customer by opening a connection, running the query and closing the connection
+                using (SQLiteCommand cmd = conn.CreateCommand())        //if line 130 is true, runs command to updates a customer by opening a connection, running the query and closing the connection
                 {
                     cmd.CommandText = @"UPDATE customer Set title = @title, firstname = @firstName, lastname = @lastName, dob = @dob,
                     nicode = @niCode, email = @email, password = @password, allowance = @allowance Where custid = @custID";
                     cmd.Parameters.AddWithValue("title", txtCustTitle.Text);
                     cmd.Parameters.AddWithValue("firstName", txtCustFirstName.Text);
                     cmd.Parameters.AddWithValue("lastName", txtCustLastName.Text);
-                    cmd.Parameters.AddWithValue("dob", txtCustDOB.Text);
+                    cmd.Parameters.AddWithValue("dob", mtxtCustDOB.Text);
                     cmd.Parameters.AddWithValue("niCode", txtCustNICode.Text);
                     cmd.Parameters.AddWithValue("email", txtCustEmailAddress.Text);
                     cmd.Parameters.AddWithValue("password", txtCustPassword.Text);

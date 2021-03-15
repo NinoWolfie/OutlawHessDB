@@ -40,7 +40,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtCustLastName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCustDOB = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCustNICode = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtCustAllowance = new System.Windows.Forms.TextBox();
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
+            this.mtxtCustDOB = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnSubmitCustDetails
@@ -155,13 +155,6 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Date of Birth";
             // 
-            // txtCustDOB
-            // 
-            this.txtCustDOB.Location = new System.Drawing.Point(138, 168);
-            this.txtCustDOB.Name = "txtCustDOB";
-            this.txtCustDOB.Size = new System.Drawing.Size(184, 20);
-            this.txtCustDOB.TabIndex = 11;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -239,11 +232,22 @@
             this.tssImageConnStatus.TabIndex = 23;
             this.tssImageConnStatus.Text = "toolStrip1";
             // 
+            // mtxtCustDOB
+            // 
+            this.mtxtCustDOB.Location = new System.Drawing.Point(138, 168);
+            this.mtxtCustDOB.Mask = "00/00/0000";
+            this.mtxtCustDOB.Name = "mtxtCustDOB";
+            this.mtxtCustDOB.Size = new System.Drawing.Size(184, 20);
+            this.mtxtCustDOB.TabIndex = 24;
+            this.mtxtCustDOB.ValidatingType = typeof(System.DateTime);
+            // 
             // CustomerDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(334, 461);
+            this.Controls.Add(this.mtxtCustDOB);
             this.Controls.Add(this.tssImageConnStatus);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtCustAllowance);
@@ -254,7 +258,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtCustNICode);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtCustDOB);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCustLastName);
             this.Controls.Add(this.label4);
@@ -288,7 +291,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtCustLastName;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCustDOB;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtCustNICode;
         private System.Windows.Forms.Label label8;
@@ -298,5 +300,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtCustAllowance;
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
+        private System.Windows.Forms.MaskedTextBox mtxtCustDOB;
     }
 }

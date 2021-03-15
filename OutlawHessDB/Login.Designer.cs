@@ -37,6 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnPasswordHelp = new System.Windows.Forms.Button();
             this.tssImageConnStatus = new System.Windows.Forms.ToolStrip();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -115,18 +117,30 @@
             this.tssImageConnStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tssImageConnStatus.Dock = System.Windows.Forms.DockStyle.None;
             this.tssImageConnStatus.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tssImageConnStatus.Location = new System.Drawing.Point(286, 316);
+            this.tssImageConnStatus.Location = new System.Drawing.Point(636, 316);
             this.tssImageConnStatus.Name = "tssImageConnStatus";
             this.tssImageConnStatus.Size = new System.Drawing.Size(39, 36);
             this.tssImageConnStatus.Stretch = true;
             this.tssImageConnStatus.TabIndex = 8;
             this.tssImageConnStatus.Text = "toolStrip1";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::OutlawHessDB.Properties.Resources.outlawHessLogo;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(340, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(300, 300);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 361);
+            this.BackColor = System.Drawing.Color.PowderBlue;
+            this.ClientSize = new System.Drawing.Size(684, 361);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tssImageConnStatus);
             this.Controls.Add(this.btnPasswordHelp);
             this.Controls.Add(this.label4);
@@ -140,6 +154,7 @@
             this.Text = "Login";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.Load += new System.EventHandler(this.Login_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,5 +171,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPasswordHelp;
         private System.Windows.Forms.ToolStrip tssImageConnStatus;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

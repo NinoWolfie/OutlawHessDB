@@ -37,7 +37,7 @@ namespace OutlawHessDB
                 txtUserFirstName.Text = null;
                 txtUserLastName.Text = null;
                 txtUserPassword.Text = null;
-                txtUserDOB.Text = null;
+                mtxtUserDOB.Text = null;
                 txtUserRole.Text = null;
             }
             else if (loadCommand == "update")
@@ -47,7 +47,7 @@ namespace OutlawHessDB
                 txtUserLastName.Text = userArray[2];
                 txtUserPassword.Text = null;        //leaves blank for security
                 userPassword = userArray[3].ToString();     //stores current password as variable to be used if needed
-                txtUserDOB.Text = userArray[4];
+                mtxtUserDOB.Text = userArray[4];
                 txtUserRole.Text = userArray[5];
             }
 
@@ -74,22 +74,33 @@ namespace OutlawHessDB
 
         private void btnSubmitCustDetails_Click(object sender, EventArgs e)
         {
-            if(loadCommand == "add")        //if statement to check the string value of loadCommand
+            if (string.IsNullOrWhiteSpace(txtUserFirstName.Text) || string.IsNullOrWhiteSpace(txtUserLastName.Text) || string.IsNullOrWhiteSpace(txtUserPassword.Text) || string.IsNullOrWhiteSpace(mtxtUserDOB.Text) ||
+                string.IsNullOrWhiteSpace(txtUserRole.Text))
+                //lines 77 - 78 validates that the textboxes contain data
             {
-                if (string.IsNullOrWhiteSpace(txtUserFirstName.Text) || string.IsNullOrWhiteSpace(txtUserFirstName.Text) || string.IsNullOrWhiteSpace(txtUserPassword.Text) ||
-                    string.IsNullOrWhiteSpace(txtUserDOB.Text) || string.IsNullOrWhiteSpace(txtUserRole.Text))        //if above statement is true, if statement checks all fields are completed
-                {
-                    MessageBox.Show("Please complete all fields");      //message box shows if above is true and ends task
-                    return;
-                }
-                using (SQLiteCommand cmd = conn.CreateCommand())    //lines 85 - 105 passes data to the database, shows a message box, shows management form, and closes this form
+                MessageBox.Show("Please fill all the fields with correct information");
+                return;
+            }
+            if (DateTime.TryParse(mtxtUserDOB.Text, out DateTime format) != true)       //validates that the date is in the right format and is an acceptable date
+            {
+                MessageBox.Show("Please enter a date in the correct format (DD/MM/YYYY)");
+                return;
+            }
+            if (txtUserRole.Text.ToLower() != "manager" || txtUserRole.Text.ToLower() != "standard")        //validates that the only one of two string values are used
+            {
+                MessageBox.Show("Please only use 'manager' or 'standard' in role field");
+                return;
+            }
+            if (loadCommand == "add")        //if statement to check the string value of loadCommand
+            {
+                using (SQLiteCommand cmd = conn.CreateCommand())    //lines 96 - 116 passes data to the database, shows a message box, shows management form, and closes this form
                 {
                     cmd.CommandText = @"Insert into users(firstname, lastname, password, dob, role) values (@firstName, @lastName, @password, @dob, @role)";
                     cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
                     cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
                     cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
-                    cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
-                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
+                    cmd.Parameters.AddWithValue("dob", mtxtUserDOB.Text);
+                    cmd.Parameters.AddWithValue("role", txtUserRole.Text.ToLower());        //converts the string value to all lower case before passing to the database to ensure consistent data
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -106,24 +117,18 @@ namespace OutlawHessDB
             }
             else if(loadCommand == "update")
             {
-                if (string.IsNullOrWhiteSpace(txtUserFirstName.Text) || string.IsNullOrWhiteSpace(txtUserFirstName.Text) ||
-                    string.IsNullOrWhiteSpace(txtUserDOB.Text) || string.IsNullOrWhiteSpace(txtUserRole.Text))        //if statement checks all fields are completed except password field
-                {
-                    MessageBox.Show("Please complete all fields");      //message box shows if above is true and ends task
-                    return;
-                }
                 if (string.IsNullOrWhiteSpace(txtUserPassword.Text))    //if this statement is true, sets stored password from database to password field if password is not being updated
                 {
                     txtUserPassword.Text = userPassword;
                 }
-                using (SQLiteCommand cmd = conn.CreateCommand())    //Lines 118 - 138 passes data to database for updating details, shows a message box, shows management form, and closes this form
+                using (SQLiteCommand cmd = conn.CreateCommand())    //Lines 124 - 137 passes data to database for updating details, shows a message box, shows management form, and closes this form
                 {
                     cmd.CommandText = @"UPDATE users Set firstname = @firstName, lastname = @lastName, password = @password, dob = @dob, role = @role Where userid = @userid";
                     cmd.Parameters.AddWithValue("firstname", txtUserFirstName.Text);
                     cmd.Parameters.AddWithValue("lastname", txtUserLastName.Text);
                     cmd.Parameters.AddWithValue("password", txtUserPassword.Text);
-                    cmd.Parameters.AddWithValue("dob", txtUserDOB.Text);
-                    cmd.Parameters.AddWithValue("role", txtUserRole.Text);
+                    cmd.Parameters.AddWithValue("dob", mtxtUserDOB.Text);
+                    cmd.Parameters.AddWithValue("role", txtUserRole.Text.ToLower());
                     cmd.Parameters.AddWithValue("userid", txtUserID.Text);
 
                     conn.Open();        //opens Connection to database

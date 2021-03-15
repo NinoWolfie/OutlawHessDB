@@ -84,6 +84,16 @@ namespace OutlawHessDB
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(txtInterestRate.Text) == true)     //validates that txtInterestRate contains data
+            {
+                MessageBox.Show("Please enter an interest rate value");
+                return;
+            }
+            if(double.TryParse(txtInterestRate.Text, out double result) == false)       //validates the string input for the interest rate is a double before continuing
+            {
+                MessageBox.Show("Please only use numbers in the interest rate");
+                return;
+            }
             foreach (DataRow row in dtProduct.Rows)     //iterates through each row of product table
             {
                 if (lbxProducts.SelectedItem.ToString() == row["prodid"].ToString() + ": " + row["isaname"].ToString())     //checks that table prodid and isaname concatenated equals the listbox item
@@ -104,7 +114,7 @@ namespace OutlawHessDB
                             }
                         }
                     }
-                    else if (row["status"].ToString() == "open")     //if line 91 is not true, checks this statement
+                    else if (row["status"].ToString() == "open")     //if line 101 is not true, checks this statement
                     {
                         if (rbtnClosed.Checked == true)     //if statement above is true, checks if rbtnClosed is checked
                         {

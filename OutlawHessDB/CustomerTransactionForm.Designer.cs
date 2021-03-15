@@ -95,10 +95,11 @@
             this.tssImageConnStatus.TabIndex = 24;
             this.tssImageConnStatus.Text = "toolStrip1";
             // 
-            // CustomerTransactionFrom
+            // CustomerTransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(940, 450);
             this.Controls.Add(this.tssImageConnStatus);
             this.Controls.Add(this.btnMainMenu);
@@ -106,7 +107,7 @@
             this.Controls.Add(this.lbxTransactions);
             this.Controls.Add(this.lbxAccounts);
             this.Controls.Add(this.lbxCustomer);
-            this.Name = "CustomerTransactionFrom";
+            this.Name = "CustomerTransactionForm";
             this.Text = "CustomerTransactionFrom";
             this.Load += new System.EventHandler(this.CustomerTransactionFrom_Load);
             this.ResumeLayout(false);

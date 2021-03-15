@@ -33,7 +33,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtUserDOB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtUserRole = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelCustDetails = new System.Windows.Forms.Button();
             this.btnSubmitCustDetails = new System.Windows.Forms.Button();
+            this.mtxtUserDOB = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // tssImageConnStatus
@@ -97,13 +97,6 @@
             this.label7.Size = new System.Drawing.Size(66, 13);
             this.label7.TabIndex = 36;
             this.label7.Text = "Date of Birth";
-            // 
-            // txtUserDOB
-            // 
-            this.txtUserDOB.Location = new System.Drawing.Point(137, 192);
-            this.txtUserDOB.Name = "txtUserDOB";
-            this.txtUserDOB.Size = new System.Drawing.Size(184, 20);
-            this.txtUserDOB.TabIndex = 43;
             // 
             // label6
             // 
@@ -216,17 +209,27 @@
             this.btnSubmitCustDetails.UseVisualStyleBackColor = true;
             this.btnSubmitCustDetails.Click += new System.EventHandler(this.btnSubmitCustDetails_Click);
             // 
+            // mtxtUserDOB
+            // 
+            this.mtxtUserDOB.Location = new System.Drawing.Point(137, 195);
+            this.mtxtUserDOB.Mask = "00/00/0000";
+            this.mtxtUserDOB.Name = "mtxtUserDOB";
+            this.mtxtUserDOB.Size = new System.Drawing.Size(184, 20);
+            this.mtxtUserDOB.TabIndex = 46;
+            this.mtxtUserDOB.ValidatingType = typeof(System.DateTime);
+            // 
             // UserDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(334, 361);
+            this.Controls.Add(this.mtxtUserDOB);
             this.Controls.Add(this.tssImageConnStatus);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtUserDOB);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtUserRole);
             this.Controls.Add(this.label5);
@@ -255,7 +258,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtUserDOB;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtUserRole;
         private System.Windows.Forms.Label label5;
@@ -269,5 +271,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelCustDetails;
         private System.Windows.Forms.Button btnSubmitCustDetails;
+        private System.Windows.Forms.MaskedTextBox mtxtUserDOB;
     }
 }
